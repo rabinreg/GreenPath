@@ -1,0 +1,24 @@
+{
+  "effectiveDate": "2026-02-01",
+  "eb2PriorityDates": {
+    "India": "2013-12-01",
+    "China": "2022-01-01",
+    "Mexico": "2024-10-15",
+    "Philippines": "2024-10-15",
+    "Other": "2024-10-15"
+  },
+  "movementRates": {
+    "India": 60,
+    "China": 180,
+    "Mexico": 365,
+    "Philippines": 365,
+    "Other": 365
+  },
+  "notes": {
+    "India": "~12 year backlog, moves ~2 months/year",
+    "China": "~4 year backlog, moves ~6 months/year",
+    "Mexico": "~1.5 year backlog, moves ~12 months/year",
+    "Philippines": "~1.5 year backlog, moves ~12 months/year",
+    "Other": "~1.5 year backlog, moves ~12 months/year"
+  }
+}

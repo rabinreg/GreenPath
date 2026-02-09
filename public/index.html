@@ -1,0 +1,2436 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenPath - Your Immigration Journey Planner</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+          Cantarell, sans-serif;
+        background: linear-gradient(135deg, #e0e7ef 0%, #b8c5d6 100%);
+        background-attachment: fixed;
+        min-height: 100vh;
+        padding: 20px;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: '';
+        position: fixed;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+        background-size: 50px 50px;
+        animation: backgroundScroll 60s linear infinite;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      @keyframes backgroundScroll {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(50px, 50px); }
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+
+      header {
+        text-align: center;
+        color: white;
+        margin-bottom: 40px;
+        animation: fadeInDown 0.8s ease-out;
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      h1 {
+        font-size: 2.8em;
+        margin-bottom: 10px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: none;
+        letter-spacing: -1px;
+        font-weight: 800;
+        animation: gradientShift 3s ease infinite;
+      }
+
+      @keyframes gradientShift {
+        0%, 100% {
+          filter: hue-rotate(0deg);
+        }
+        50% {
+          filter: hue-rotate(20deg);
+        }
+      }
+
+      .subtitle {
+        font-size: 1.2em;
+        opacity: 0.95;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        color: #4a5568;
+      }
+
+      .card {
+        background: white;
+        border-radius: 20px;
+        padding: 35px;
+        margin-bottom: 30px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        animation: fadeInUp 0.6s ease-out;
+        animation-fill-mode: both;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .card:nth-child(2) { animation-delay: 0.1s; }
+      .card:nth-child(3) { animation-delay: 0.2s; }
+      .card:nth-child(4) { animation-delay: 0.3s; }
+      .card:nth-child(5) { animation-delay: 0.4s; }
+
+      .visa-status {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .status-item {
+        padding: 18px;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-radius: 12px;
+        border-left: 4px solid #667eea;
+        transition: all 0.3s ease;
+        cursor: default;
+      }
+
+      .status-item:hover {
+        transform: translateX(5px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        border-left-width: 6px;
+      }
+
+      .status-label {
+        font-size: 0.9em;
+        color: #666;
+        margin-bottom: 5px;
+      }
+
+      .status-value {
+        font-size: 1.3em;
+        font-weight: 600;
+        color: #333;
+      }
+
+      .timeline {
+        position: relative;
+        padding: 20px 0;
+      }
+
+      .timeline-item {
+        display: flex;
+        margin-bottom: 30px;
+        position: relative;
+      }
+
+      .timeline-marker {
+        width: 45px;
+        height: 45px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        margin-right: 20px;
+        flex-shrink: 0;
+        z-index: 1;
+        box-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
+        transition: all 0.3s ease;
+      }
+
+      .timeline-marker:hover {
+        transform: scale(1.15);
+        box-shadow: 0 0 30px rgba(102, 126, 234, 0.8);
+      }
+
+      .timeline-content {
+        flex: 1;
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      .stage-name {
+        font-size: 1.3em;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      .stage-info {
+        display: flex;
+        gap: 20px;
+        margin-top: 10px;
+        flex-wrap: wrap;
+      }
+
+      .stage-stat {
+        background: white;
+        padding: 10px 15px;
+        border-radius: 8px;
+        text-align: center;
+      }
+
+      .stage-stat-label {
+        font-size: 0.8em;
+        color: #666;
+      }
+
+      .stage-stat-value {
+        font-size: 1.2em;
+        font-weight: 600;
+        color: #667eea;
+      }
+
+      .stage-notes {
+        margin-top: 10px;
+        color: #666;
+        font-size: 0.95em;
+      }
+
+      .total-timeline {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .total-timeline h3 {
+        margin-bottom: 10px;
+      }
+
+      .total-days {
+        font-size: 3em;
+        font-weight: bold;
+      }
+
+      .ai-section {
+        margin-top: 30px;
+      }
+
+      .ai-form {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+      }
+
+      select,
+      button {
+        padding: 12px 20px;
+        border-radius: 8px;
+        border: 2px solid #667eea;
+        font-size: 1em;
+      }
+
+      select {
+        flex: 1;
+        background: white;
+      }
+
+      button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      }
+
+      button::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+      }
+
+      button:hover::before {
+        width: 300px;
+        height: 300px;
+      }
+
+      button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+      }
+
+      button:active {
+        transform: translateY(-1px);
+      }
+
+      button:disabled {
+        background: linear-gradient(135deg, #ccc 0%, #999 100%);
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
+
+      .ai-response {
+        margin-top: 20px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        white-space: pre-wrap;
+        line-height: 1.6;
+        display: none;
+      }
+
+      .loading {
+        text-align: center;
+        padding: 40px;
+        color: #667eea;
+        font-size: 1.2em;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 5px 12px;
+        background: #28a745;
+        color: white;
+        border-radius: 20px;
+        font-size: 0.85em;
+        font-weight: 600;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      .loading {
+        animation: pulse 1.5s infinite;
+      }
+
+      h2 {
+        color: #333;
+        margin-bottom: 25px;
+        font-size: 1.9em;
+        position: relative;
+        padding-bottom: 15px;
+      }
+
+      h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        border-radius: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>🌟 GreenPath</h1>
+        <p class="subtitle">
+          Your Personalized Immigration Journey Planner
+        </p>
+      </header>
+
+      <!-- Legal Disclaimer -->
+      <div style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 12px; padding: 20px; margin-bottom: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+        <div style="display: flex; align-items: start; gap: 15px;">
+          <div style="font-size: 2em; flex-shrink: 0;">⚠️</div>
+          <div>
+            <h3 style="color: #856404; margin: 0 0 10px 0; font-size: 1.2em;">Legal Disclaimer</h3>
+            <p style="color: #856404; margin: 0; line-height: 1.6; font-size: 0.95em;">
+              <strong>This is not legal advice.</strong> This tool is for informational and educational purposes only as part of a personal project. 
+              Immigration laws and processing times are subject to change. The developer is not responsible for any decisions made based on the 
+              information provided by this tool. For official immigration advice, please consult with a licensed immigration attorney or accredited representative.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visa Status Card -->
+      <div class="card">
+        <h2>📋 Current Visa Status</h2>
+
+        <!-- Edit Dates Form -->
+        <div
+          style="
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+          "
+        >
+          <h3 style="font-size: 1.2em; margin-bottom: 15px; color: #667eea">
+            📅 Update Your Visa Information
+          </h3>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 15px;
+              margin-bottom: 15px;
+            "
+          >
+            <div>
+              <label
+                style="
+                  display: block;
+                  margin-bottom: 5px;
+                  font-weight: 600;
+                  color: #333;
+                "
+                >Visa Type:</label
+              >
+              <select
+                id="visa-type"
+                style="
+                  width: 100%;
+                  padding: 10px;
+                  border: 2px solid #667eea;
+                  border-radius: 8px;
+                  font-size: 1em;
+                  background: white;
+                  cursor: pointer;
+                "
+              >
+                <option value="H1B">H1B</option>
+                <option value="F1">F1 (Student)</option>
+                <option value="L1">L1</option>
+                <option value="O1">O1</option>
+                <option value="TN">TN</option>
+                <option value="H4">H4</option>
+                <option value="L2">L2</option>
+                <option value="OPT">OPT</option>
+              </select>
+            </div>
+            <div>
+              <label
+                style="
+                  display: block;
+                  margin-bottom: 5px;
+                  font-weight: 600;
+                  color: #333;
+                "
+                >Country of Citizenship:</label
+              >
+              <select
+                id="country"
+                onchange="handleCountryChange()"
+                style="
+                  width: 100%;
+                  padding: 10px;
+                  border: 2px solid #667eea;
+                  border-radius: 8px;
+                  font-size: 1em;
+                  background: white;
+                  cursor: pointer;
+                "
+              >
+                <option value="">Select Country</option>
+                <option value="India">🇮🇳 India</option>
+                <option value="China">🇨🇳 China</option>
+                <option value="Mexico">🇲🇽 Mexico</option>
+                <option value="Philippines">🇵🇭 Philippines</option>
+                <option value="Vietnam">🇻🇳 Vietnam</option>
+                <option value="South Korea">🇰🇷 South Korea</option>
+                <option value="Canada">🇨🇦 Canada</option>
+                <option value="United Kingdom">🇬🇧 United Kingdom</option>
+                <option value="Other">🌍 Other (Rest of World)</option>
+              </select>
+            </div>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 1fr auto;
+              gap: 15px;
+              align-items: end;
+            "
+          >
+            <div>
+              <label
+                style="
+                  display: block;
+                  margin-bottom: 5px;
+                  font-weight: 600;
+                  color: #333;
+                "
+                >Start Date:</label
+              >
+              <input
+                type="date"
+                id="start-date"
+                style="
+                  width: 100%;
+                  padding: 10px;
+                  border: 2px solid #667eea;
+                  border-radius: 8px;
+                  font-size: 1em;
+                "
+              />
+            </div>
+            <div>
+              <label
+                style="
+                  display: block;
+                  margin-bottom: 5px;
+                  font-weight: 600;
+                  color: #333;
+                "
+                >End Date:</label
+              >
+              <input
+                type="date"
+                id="end-date"
+                style="
+                  width: 100%;
+                  padding: 10px;
+                  border: 2px solid #667eea;
+                  border-radius: 8px;
+                  font-size: 1em;
+                "
+              />
+            </div>
+            <div>
+              <button
+                onclick="updateDates()"
+                style="
+                  padding: 10px 25px;
+                  background: #667eea;
+                  color: white;
+                  border: none;
+                  border-radius: 8px;
+                  font-weight: 600;
+                  cursor: pointer;
+                "
+              >
+                Update
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="visa-status" class="visa-status">
+          <div class="loading">Loading visa information...</div>
+        </div>
+
+        <!-- Days Remaining -->
+        <div
+          id="days-remaining-card"
+          style="
+            display: none;
+            margin-top: 20px;
+            padding: 25px;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border-radius: 12px;
+            text-align: center;
+          "
+        >
+          <div
+            id="days-remaining-label"
+            style="font-size: 1.1em; opacity: 0.95; margin-bottom: 10px"
+          >
+            Days Remaining
+          </div>
+          <div id="days-remaining" style="font-size: 3.5em; font-weight: bold">
+            0
+          </div>
+          <div
+            id="days-percentage"
+            style="font-size: 1em; opacity: 0.9; margin-top: 5px"
+          ></div>
+        </div>
+
+        <!-- Next Steps for H1B -->
+        <div id="next-steps-card" style="display: none; margin-top: 20px">
+          <h3
+            style="
+              font-size: 1.3em;
+              margin-bottom: 20px;
+              color: #667eea;
+              display: flex;
+              align-items: center;
+              gap: 10px;
+            "
+          >
+            🎯 Your Green Card Journey - Next Steps
+          </h3>
+
+          <!-- Recommended Next Action -->
+          <div
+            id="recommended-action"
+            style="
+              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+              padding: 25px;
+              border-radius: 12px;
+              color: white;
+              margin-bottom: 20px;
+            "
+          >
+            <div
+              style="font-size: 1.3em; font-weight: bold; margin-bottom: 15px"
+            >
+              👉 What's Due Next?
+            </div>
+            <div
+              id="next-action-content"
+              style="font-size: 1.1em; line-height: 1.8"
+            >
+              Loading recommendation...
+            </div>
+          </div>
+
+          <!-- PERM Date Calculator -->
+          <div
+            style="
+              background: #f0f4ff;
+              padding: 20px;
+              border-radius: 10px;
+              margin-bottom: 20px;
+            "
+          >
+            <h4 style="font-size: 1.1em; margin-bottom: 15px; color: #667eea">
+              📅 Calculate Your Personalized Timeline
+            </h4>
+
+            <!-- Current Stage Selection -->
+            <div style="margin-bottom: 20px">
+              <label
+                style="
+                  display: block;
+                  margin-bottom: 5px;
+                  font-weight: 600;
+                  color: #333;
+                "
+                >Where are you in your Green Card journey?</label
+              >
+              <select
+                id="current-stage"
+                onchange="handleStageChange()"
+                style="
+                  width: 100%;
+                  padding: 10px;
+                  border: 2px solid #667eea;
+                  border-radius: 8px;
+                  font-size: 1em;
+                  background: white;
+                  cursor: pointer;
+                "
+              >
+                <option value="f1">Currently F1 Student</option>
+                <option value="opt">On OPT (Optional Practical Training)</option>
+                <option value="stem-opt">On STEM OPT Extension</option>
+                <option value="not-started">
+                  On H1B - Haven't started Green Card yet (Planning to start PERM)
+                </option>
+                <option value="perm">Currently in PERM process</option>
+                <option value="i140">PERM approved, in I-140 process</option>
+                <option value="i485">
+                  I-140 approved, waiting for/in I-485
+                </option>
+              </select>
+            </div>
+
+            <!-- Dynamic Date Input Section -->
+            <div id="date-input-section">
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: 1fr auto;
+                  gap: 15px;
+                  align-items: end;
+                "
+              >
+                <div>
+                  <label
+                    id="date-input-label"
+                    style="
+                      display: block;
+                      margin-bottom: 5px;
+                      font-weight: 600;
+                      color: #333;
+                    "
+                    >PERM Start Date (or Planned Start):</label
+                  >
+                  <input
+                    type="date"
+                    id="stage-date"
+                    style="
+                      width: 100%;
+                      padding: 10px;
+                      border: 2px solid #667eea;
+                      border-radius: 8px;
+                      font-size: 1em;
+                    "
+                  />
+                  <div
+                    id="date-input-help"
+                    style="font-size: 0.85em; color: #666; margin-top: 5px"
+                  >
+                    Enter when you plan to start or started PERM
+                  </div>
+                </div>
+                <div>
+                  <button
+                    onclick="calculatePersonalizedTimeline()"
+                    style="
+                      padding: 10px 25px;
+                      background: #667eea;
+                      color: white;
+                      border: none;
+                      border-radius: 8px;
+                      font-weight: 600;
+                      cursor: pointer;
+                      transition: all 0.3s;
+                    "
+                  >
+                    Calculate Timeline
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Personalized Timeline Display -->
+          <div
+            id="personalized-timeline"
+            style="display: none; margin-bottom: 20px"
+          ></div>
+
+          <div id="next-steps-content" style="display: none"></div>
+        </div>
+      </div>
+
+      <!-- Timeline Card -->
+      <div class="card" style="display: none">
+        <h2>📅 Immigration Timeline</h2>
+        <div id="timeline" class="timeline">
+          <div class="loading">Loading timeline...</div>
+        </div>
+      </div>
+
+      <!-- AI Assistant Card -->
+      <div class="card">
+        <h2>🤖 AI Immigration Assistant</h2>
+        <p style="color: #666; margin-bottom: 15px">
+          Get intelligent explanations and guidance for each stage
+        </p>
+
+        <div class="ai-section">
+          <label for="stage-select" style="font-weight: 600; color: #333"
+            >Select a stage:</label
+          >
+          <div class="ai-form">
+            <select id="stage-select">
+              <option value="">-- Select Stage --</option>
+              <option value="F1">F1 - Student Visa</option>
+              <option value="OPT">OPT - Optional Practical Training</option>
+              <option value="STEM-OPT">STEM OPT - Extension</option>
+              <option value="H1B">H1B - Work Visa</option>
+              <option value="PERM">PERM - Labor Certification</option>
+              <option value="I-140">I-140 - Immigrant Petition</option>
+              <option value="I-485">I-485 - Adjust Status</option>
+            </select>
+            <button id="explain-btn" onclick="getExplanation()">
+              Get Explanation
+            </button>
+            <button id="steps-btn" onclick="getNextSteps()">Next Steps</button>
+          </div>
+
+          <div id="ai-response" class="ai-response"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Fetch visa status
+      async function loadVisaStatus() {
+        console.log("Starting to load visa status...");
+        try {
+          const response = await fetch("/visa");
+          console.log("Response received:", response.status);
+          const data = await response.json();
+          console.log("Data parsed:", data);
+
+          // Set form inputs
+          document.getElementById("visa-type").value =
+            data.currentVisa.visaType;
+          document.getElementById("country").value =
+            data.currentVisa.country || "";
+          document.getElementById("start-date").value =
+            data.currentVisa.startDate;
+          document.getElementById("end-date").value =
+            data.currentVisa.expirationDate;
+
+          // Store country globally for timeline calculation (regardless of visa type)
+          window.userCountry = data.currentVisa.country || "Other";
+
+          const statusHtml = `
+                    <div class="status-item">
+                        <div class="status-label">Visa Type</div>
+                        <div class="status-value">${data.currentVisa.visaType}</div>
+                    </div>
+                    ${
+                      data.currentVisa.country
+                        ? `
+                    <div class="status-item">
+                        <div class="status-label">Country</div>
+                        <div class="status-value">${data.currentVisa.country}</div>
+                    </div>
+                    `
+                        : ""
+                    }
+                    <div class="status-item">
+                        <div class="status-label">Status</div>
+                        <div class="status-value">
+                            <span class="badge">${data.currentVisa.status}</span>
+                        </div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-label">Start Date</div>
+                        <div class="status-value">${data.currentVisa.startDate}</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-label">Expires</div>
+                        <div class="status-value">${data.currentVisa.expirationDate}</div>
+                    </div>
+                `;
+
+          document.getElementById("visa-status").innerHTML = statusHtml;
+
+          // Update the label for days remaining with visa type
+          document.getElementById("days-remaining-label").textContent =
+            `Days Remaining on ${data.currentVisa.visaType}`;
+
+          // Calculate days remaining and pass visa type
+          calculateDaysRemaining(data.currentVisa.expirationDate, data.currentVisa.visaType);
+
+          // Store visa type globally
+          window.currentVisaType = data.currentVisa.visaType;
+
+          // Show next steps if H1B or F1
+          if (data.currentVisa.visaType === "H1B") {
+            // Store country globally for timeline calculation
+            window.userCountry = data.currentVisa.country || "Other";
+            // Set default date to today
+            const today = new Date().toISOString().split("T")[0];
+            document.getElementById("stage-date").value = today;
+            // Set default stage to "not-started"
+            document.getElementById("current-stage").value = "not-started";
+            // Show the card
+            document.getElementById("next-steps-card").style.display = "block";
+            // Update What's Due Next content
+            updateWhatsNext("not-started");
+            // Auto-calculate timeline on load for H1B with PERM path (with delay to ensure DOM is ready)
+            setTimeout(() => {
+              calculatePersonalizedTimeline(true);
+            }, 100);
+          } else if (data.currentVisa.visaType === "F1") {
+            // Show F1-specific next steps - start with OPT
+            document.getElementById("next-steps-card").style.display = "block";
+            updateWhatsNext("f1");
+          } else {
+            document.getElementById("next-steps-card").style.display = "none";
+          }
+        } catch (error) {
+          console.error("Error loading visa data:", error);
+          document.getElementById("visa-status").innerHTML =
+            `<div style="color: red; padding: 20px;">Error loading visa data: ${error.message}<br><br>Server running? Try refreshing with Cmd+Shift+R</div>`;
+        }
+      }
+
+      // Show next steps for H1B holders
+      function showNextSteps(h1bStartDate) {
+        const nextStepsCard = document.getElementById("next-steps-card");
+        const nextActionContent = document.getElementById(
+          "next-action-content",
+        );
+
+        // Calculate what's due next
+        const today = new Date();
+        const startDate = new Date(h1bStartDate);
+        const monthsSinceStart = Math.floor(
+          (today - startDate) / (1000 * 60 * 60 * 24 * 30),
+        );
+
+        // Define stages with typical start times
+        const stages = [
+          {
+            name: "PERM Labor Certification",
+            typicalStart: 12,
+            description:
+              "Start the labor certification process (PWD, recruitment, PERM filing)",
+            avgDuration: "10-13 months",
+          },
+          {
+            name: "I-140 Immigrant Petition",
+            typicalStart: 24,
+            description: "File I-140 petition after PERM approval",
+            avgDuration: "4-8 months",
+          },
+          {
+            name: "I-485 Adjustment of Status",
+            typicalStart: 36,
+            description: "File I-485 when priority date becomes current",
+            avgDuration: "6-18 months (varies by country)",
+          },
+        ];
+
+        // Determine next step
+        let nextStep = stages[0];
+        let actionMessage = "";
+
+        if (monthsSinceStart < stages[0].typicalStart) {
+          const monthsUntil = stages[0].typicalStart - monthsSinceStart;
+          actionMessage = `
+                    <div style="margin-bottom: 10px;"><strong>Next Step:</strong> ${nextStep.name}</div>
+                    <div style="opacity: 0.95; margin-bottom: 10px;">${nextStep.description}</div>
+                    <div style="background: rgba(255,255,255,0.2); padding: 12px; border-radius: 8px; margin-top: 10px;">
+                        <div style="font-size: 0.95em;">⏰ <strong>When to Start:</strong> Most people start this ${stages[0].typicalStart} months after H1B begins</div>
+                        <div style="font-size: 0.95em; margin-top: 5px;">📅 That's approximately <strong>${monthsUntil} month${monthsUntil === 1 ? "" : "s"} from now</strong></div>
+                        <div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">💡 Duration: ${nextStep.avgDuration}</div>
+                    </div>
+                `;
+        } else if (monthsSinceStart < stages[1].typicalStart) {
+          nextStep = stages[0];
+          actionMessage = `
+                    <div style="margin-bottom: 10px;"><strong>Current Step:</strong> ${nextStep.name}</div>
+                    <div style="opacity: 0.95; margin-bottom: 10px;">${nextStep.description}</div>
+                    <div style="background: rgba(255,255,255,0.2); padding: 12px; border-radius: 8px; margin-top: 10px;">
+                        <div style="font-size: 0.95em;">✅ <strong>You're in the right timeline!</strong> Most people start PERM around ${stages[0].typicalStart} months after H1B</div>
+                        <div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">💡 Duration: ${nextStep.avgDuration}</div>
+                    </div>
+                `;
+        } else if (monthsSinceStart < stages[2].typicalStart) {
+          nextStep = stages[1];
+          const monthsSince = monthsSinceStart - stages[1].typicalStart;
+          if (monthsSince >= 0) {
+            actionMessage = `
+                        <div style="margin-bottom: 10px;"><strong>Current Step:</strong> ${nextStep.name}</div>
+                        <div style="opacity: 0.95; margin-bottom: 10px;">${nextStep.description}</div>
+                        <div style="background: rgba(255,255,255,0.2); padding: 12px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-size: 0.95em;">✅ <strong>You're in the right timeline!</strong> Most people file I-140 around ${stages[1].typicalStart} months after H1B</div>
+                            <div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">💡 Duration: ${nextStep.avgDuration}</div>
+                        </div>
+                    `;
+          } else {
+            const monthsUntil = Math.abs(monthsSince);
+            actionMessage = `
+                        <div style="margin-bottom: 10px;"><strong>Next Step:</strong> ${nextStep.name}</div>
+                        <div style="opacity: 0.95; margin-bottom: 10px;">${nextStep.description}</div>
+                        <div style="background: rgba(255,255,255,0.2); padding: 12px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-size: 0.95em;">⏰ <strong>When to Start:</strong> Most people start this ${stages[1].typicalStart} months after H1B begins</div>
+                            <div style="font-size: 0.95em; margin-top: 5px;">📅 That's approximately <strong>${monthsUntil} month${monthsUntil === 1 ? "" : "s"} from now</strong></div>
+                            <div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">💡 Duration: ${nextStep.avgDuration}</div>
+                        </div>
+                    `;
+          }
+        } else {
+          nextStep = stages[2];
+          actionMessage = `
+                    <div style="margin-bottom: 10px;"><strong>Current Step:</strong> ${nextStep.name}</div>
+                    <div style="opacity: 0.95; margin-bottom: 10px;">${nextStep.description}</div>
+                    <div style="background: rgba(255,255,255,0.2); padding: 12px; border-radius: 8px; margin-top: 10px;">
+                        <div style="font-size: 0.95em;">✅ <strong>You're in the final stage!</strong> Most people file I-485 around ${stages[2].typicalStart} months after H1B</div>
+                        <div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">💡 Duration: ${nextStep.avgDuration}</div>
+                    </div>
+                `;
+        }
+
+        nextActionContent.innerHTML = actionMessage;
+        nextStepsCard.style.display = "block";
+      }
+
+      function renderNextStepsContent(h1bStartDate, nextStepsContent) {
+        const today = new Date();
+        const startDate = new Date(h1bStartDate);
+        const monthsSinceStart = Math.floor(
+          (today - startDate) / (1000 * 60 * 60 * 24 * 30),
+        );
+
+        // Define the green card process stages
+        const stages = [
+          {
+            name: "PERM Labor Certification",
+            substages: [
+              {
+                name: "PWD (Prevailing Wage Determination)",
+                duration: "60-90 days",
+                description: "Employer requests wage determination from DOL",
+              },
+              {
+                name: "Recruitment",
+                duration: "30-60 days",
+                description: "Employer conducts recruitment process",
+              },
+              {
+                name: "PERM Filing",
+                duration: "180-365 days",
+                description: "File PERM application with DOL",
+              },
+            ],
+            typicalStart: 12, // months after H1B start
+            avgDuration: 300,
+            description:
+              "Labor certification process to prove no qualified US workers available",
+          },
+          {
+            name: "I-140 (Immigrant Petition)",
+            substages: [
+              {
+                name: "I-140 Preparation & Filing",
+                duration: "15-30 days",
+                description: "Prepare and submit petition to USCIS",
+              },
+              {
+                name: "I-140 Processing",
+                duration: "120-240 days",
+                description: "USCIS reviews and adjudicates petition",
+              },
+            ],
+            typicalStart: 24, // months after H1B start
+            avgDuration: 180,
+            description: "Petition for immigrant worker classification",
+          },
+          {
+            name: "I-485 (Adjustment of Status)",
+            substages: [
+              {
+                name: "Priority Date Current",
+                duration: "Varies",
+                description: "Wait for priority date to become current",
+              },
+              {
+                name: "I-485 Filing",
+                duration: "180-540 days",
+                description: "File adjustment of status application",
+              },
+              {
+                name: "Biometrics & Interview",
+                duration: "30-90 days",
+                description: "Complete biometrics and interview if required",
+              },
+            ],
+            typicalStart: 36, // months after H1B start
+            avgDuration: 365,
+            description:
+              "Final step to obtain permanent residence (Green Card)",
+          },
+        ];
+
+        // Determine current and next stage
+        let currentStageIndex = -1;
+        for (let i = 0; i < stages.length; i++) {
+          if (monthsSinceStart >= stages[i].typicalStart) {
+            currentStageIndex = i;
+          }
+        }
+
+        let stagesHtml =
+          '<div style="display: flex; flex-direction: column; gap: 20px;">';
+
+        stages.forEach((stage, index) => {
+          const isNext = index === currentStageIndex + 1;
+          const isPast = index < currentStageIndex + 1;
+          const monthsUntil = stage.typicalStart - monthsSinceStart;
+
+          let statusColor = "#6c757d";
+          let statusText = "Future";
+          let statusBg = "#f8f9fa";
+
+          if (isNext) {
+            statusColor = "#667eea";
+            statusText = "👉 RECOMMENDED NEXT STEP";
+            statusBg = "#e7f1ff";
+          } else if (isPast) {
+            statusColor = "#28a745";
+            statusText = "✓ Should be in progress or completed";
+            statusBg = "#e8f5e9";
+          }
+
+          stagesHtml += `
+                    <div style="background: ${statusBg}; padding: 20px; border-radius: 12px; border-left: 5px solid ${statusColor};">
+                        <div style="display: flex; justify-content: between; align-items: start; margin-bottom: 15px;">
+                            <div style="flex: 1;">
+                                <div style="font-size: 1.2em; font-weight: bold; color: #333; margin-bottom: 5px;">
+                                    ${index + 1}. ${stage.name}
+                                </div>
+                                <div style="font-size: 0.9em; color: #666; margin-bottom: 10px;">
+                                    ${stage.description}
+                                </div>
+                                ${
+                                  isNext
+                                    ? `
+                                    <div style="background: ${statusColor}; color: white; padding: 8px 15px; border-radius: 8px; font-weight: bold; font-size: 0.9em; display: inline-block; margin-bottom: 10px;">
+                                        ${statusText}
+                                    </div>
+                                `
+                                    : `
+                                    <div style="color: ${statusColor}; font-weight: 600; font-size: 0.9em; margin-bottom: 10px;">
+                                        ${statusText}
+                                    </div>
+                                `
+                                }
+                                ${
+                                  monthsUntil > 0 && !isPast
+                                    ? `
+                                    <div style="font-size: 0.85em; color: #666; font-style: italic;">
+                                        ⏱️ Typically started ${stage.typicalStart} months after H1B (in ${monthsUntil} months)
+                                    </div>
+                                `
+                                    : ""
+                                }
+                                ${
+                                  isPast
+                                    ? `
+                                    <div style="font-size: 0.85em; color: #666; font-style: italic;">
+                                        📅 Typically started ${stage.typicalStart} months after H1B
+                                    </div>
+                                `
+                                    : ""
+                                }
+                            </div>
+                            <div style="text-align: right; min-width: 120px;">
+                                <div style="font-size: 2em; font-weight: bold; color: ${statusColor};">
+                                    ${Math.floor(stage.avgDuration / 30)}
+                                </div>
+                                <div style="font-size: 0.8em; color: #666;">months avg</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Substages -->
+                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.1);">
+                            <div style="font-weight: 600; font-size: 0.9em; color: #333; margin-bottom: 10px;">Process Breakdown:</div>
+                            ${stage.substages
+                              .map(
+                                (sub, subIndex) => `
+                                <div style="display: flex; align-items: start; gap: 10px; margin-bottom: 8px; padding: 10px; background: white; border-radius: 8px;">
+                                    <div style="background: ${statusColor}; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8em; font-weight: bold; flex-shrink: 0;">
+                                        ${subIndex + 1}
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: 600; font-size: 0.9em; color: #333;">${sub.name}</div>
+                                        <div style="font-size: 0.8em; color: #666; margin-top: 2px;">${sub.description}</div>
+                                    </div>
+                                    <div style="font-size: 0.8em; color: #667eea; font-weight: 600; white-space: nowrap;">
+                                        ${sub.duration}
+                                    </div>
+                                </div>
+                            `,
+                              )
+                              .join("")}
+                        </div>
+                    </div>
+                `;
+        });
+
+        stagesHtml += "</div>";
+
+        // Add timeline overview
+        const totalMonths = stages.reduce(
+          (sum, s) => sum + Math.floor(s.avgDuration / 30),
+          0,
+        );
+        stagesHtml += `
+                <div style="margin-top: 25px; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 1em; opacity: 0.9; margin-bottom: 10px;">Total Estimated Timeline</div>
+                    <div style="font-size: 2.5em; font-weight: bold;">${totalMonths} months</div>
+                    <div style="font-size: 0.9em; opacity: 0.9; margin-top: 5px;">(~${(totalMonths / 12).toFixed(1)} years from PERM start to Green Card)</div>
+                </div>
+            `;
+
+        nextStepsContent.innerHTML = stagesHtml;
+      }
+
+      // Handle stage selection change
+      function handleStageChange() {
+        const stage = document.getElementById("current-stage").value;
+        const dateLabel = document.getElementById("date-input-label");
+        const dateHelp = document.getElementById("date-input-help");
+        const dateInput = document.getElementById("stage-date");
+        const nextActionContent = document.getElementById(
+          "next-action-content",
+        );
+
+        // Set today as default
+        const today = new Date().toISOString().split("T")[0];
+
+        // Update "What's Due Next" based on stage
+        updateWhatsNext(stage);
+
+        switch (stage) {
+          case "f1":
+            dateLabel.textContent = "Graduation Date (or Expected):";
+            dateHelp.textContent = "Enter your graduation date to calculate OPT timeline";
+            dateInput.value = today;
+            break;
+          case "opt":
+            dateLabel.textContent = "OPT Start Date:";
+            dateHelp.textContent = "Enter when your OPT started or will start";
+            dateInput.value = today;
+            break;
+          case "stem-opt":
+            dateLabel.textContent = "STEM OPT Start Date:";
+            dateHelp.textContent = "Enter when your STEM OPT started";
+            dateInput.value = today;
+            break;
+          case "not-started":
+            dateLabel.textContent = "PERM Start Date (or Planned Start):";
+            dateHelp.textContent = "Enter when you plan to start PERM";
+            dateInput.value = today;
+            break;
+          case "perm":
+            dateLabel.textContent = "PERM Start Date:";
+            dateHelp.textContent = "Enter when you started your PERM process";
+            dateInput.value = "";
+            break;
+          case "i140":
+            dateLabel.textContent = "PERM Approval Date:";
+            dateHelp.textContent =
+              "Enter when your PERM was approved (this is your Priority Date)";
+            dateInput.value = "";
+            break;
+          case "i485":
+            dateLabel.textContent = "I-140 Approval Date:";
+            dateHelp.textContent = "Enter when your I-140 was approved";
+            dateInput.value = "";
+            break;
+        }
+      }
+
+      // Update "What's Due Next" section based on selected stage
+      function updateWhatsNext(stage) {
+        const nextActionContent = document.getElementById(
+          "next-action-content",
+        );
+
+        const stageInfo = {
+          "f1": {
+            name: "OPT (Optional Practical Training)",
+            description:
+              "Apply for 12 months of work authorization after graduation",
+            avgDuration: "12 months",
+            action: "Apply for OPT through your school's international office",
+            timing: "Apply 90 days before to 60 days after graduation",
+            timingDetail:
+              "Submit OPT application to USCIS with I-20 from your DSO. Processing takes 3-5 months, so apply early!",
+          },
+          "opt": {
+            name: "STEM OPT Extension",
+            description:
+              "Extend your work authorization for 24 additional months if you have a STEM degree",
+            avgDuration: "24 months",
+            action: "Apply for STEM OPT extension before your OPT expires",
+            timing: "Apply at least 90 days before OPT expires, no earlier than 150 days",
+            timingDetail:
+              "Requires employer to have E-Verify and complete I-983 training plan. Gives you total of 3 years work authorization!",
+          },
+          "stem-opt": {
+            name: "H1B Work Visa",
+            description:
+              "Transition to H1B for renewable 3-year work authorization leading to Green Card",
+            avgDuration: "3 years (extendable to 6)",
+            action: "Find employer to sponsor H1B petition",
+            timing: "H1B lottery registration is typically in March, starts October 1st",
+            timingDetail:
+              "Use your STEM OPT time wisely! Secure H1B sponsorship and you can even start PERM process on STEM OPT.",
+          },
+          "f1-opt": {
+            name: "OPT (Optional Practical Training)",
+            description:
+              "Apply for OPT to work in the US for 12 months after graduation",
+            avgDuration: "12 months",
+            action: "Apply for OPT 90 days before graduation",
+            timing: "Apply 90 days before to 60 days after graduation",
+            timingDetail:
+              "Submit your OPT application to USCIS with your I-20 from your school's international office",
+          },
+          "f1-stem": {
+            name: "STEM OPT Extension",
+            description:
+              "Extend your work authorization for 24 additional months if you have a STEM degree",
+            avgDuration: "24 months",
+            action: "Apply for STEM OPT extension before your OPT expires",
+            timing: "Apply at least 90 days before OPT expires, no earlier than 150 days",
+            timingDetail:
+              "Requires employer to have E-Verify and complete I-983 training plan",
+          },
+          "f1-h1b": {
+            name: "H1B Work Visa",
+            description:
+              "Transition to H1B work visa for long-term employment authorization",
+            avgDuration: "3 years (extendable to 6)",
+            action: "Find employer to sponsor H1B petition",
+            timing: "H1B lottery registration is typically in March, starts October 1st",
+            timingDetail:
+              "Plan ahead - the lottery happens once a year. Consider cap-exempt employers if you don't get selected",
+          },
+          "not-started": {
+            name: "PERM Labor Certification",
+            description:
+              "Start the labor certification process (PWD, recruitment, PERM filing)",
+            avgDuration: "10-13 months",
+            action: "Begin your PERM process",
+            timing: "Most people start PERM 12-18 months after H1B begins",
+            timingDetail:
+              "This gives you time to settle in your role and ensure job stability",
+          },
+          perm: {
+            name: "I-140 Immigrant Petition",
+            description: "Prepare for I-140 filing after PERM approval",
+            avgDuration: "4-8 months",
+            action: "Continue PERM process, prepare I-140 documents",
+            timing: "File I-140 immediately after PERM approval",
+            timingDetail: "Most people file within 1-2 weeks of PERM approval",
+          },
+          i140: {
+            name: "I-485 Adjustment of Status",
+            description:
+              "Monitor priority date and prepare I-485 when date becomes current",
+            avgDuration: "6-18 months (varies by country)",
+            action: "Track visa bulletin for your priority date",
+            timing: "File when priority date becomes current",
+            timingDetail:
+              "Timing depends on country backlog - India: years of wait, China: 1-2 years, Others: concurrent filing possible",
+          },
+          i485: {
+            name: "Green Card Final Stage",
+            description: "Complete I-485 process and wait for app (only for the full F1 pathway view)roval",
+            avgDuration: "6-18 months",
+            action: "Monitor case status and respond to any RFEs",
+            timing: "Already in final stage",
+            timingDetail: "Respond promptly to any requests from USCIS",
+          },
+        };
+
+        const info = stageInfo[stage];
+        
+        // Show single next step for all stages
+        if (info) {
+          nextActionContent.innerHTML = `
+            <div style="margin-bottom: 10px;"><strong>Next Step:</strong> ${info.name}</div>
+            <div style="opacity: 0.95; margin-bottom: 10px;">${info.description}</div>
+            <div style="background: rgba(255,255,255,0.2); padding: 12px; border-radius: 8px; margin-top: 10px;">
+              <div style="font-size: 0.95em;">🎯 <strong>Action Required:</strong> ${info.action}</div>
+              <div style="font-size: 0.95em; margin-top: 8px;">⏰ <strong>Typical Timing:</strong> ${info.timing}</div>
+              <div style="font-size: 0.85em; margin-top: 5px; opacity: 0.85; font-style: italic;">${info.timingDetail}</div>
+              <div style="font-size: 0.9em; margin-top: 8px; opacity: 0.9;">💡 Duration: ${info.avgDuration}</div>
+            </div>
+          `;
+        }
+      }
+
+      // Calculate personalized timeline with PERM start date
+      function calculatePersonalizedTimeline(autoCalculate = false) {
+        const stageInput = document.getElementById("stage-date").value;
+        const currentStage = document.getElementById("current-stage").value;
+
+        if (!stageInput) {
+          if (!autoCalculate) {
+            alert("Please enter a date");
+          }
+          return;
+        }
+
+        const inputDate = new Date(stageInput);
+        const timelineDiv = document.getElementById("personalized-timeline");
+        const country = window.userCountry || "Other";
+
+        // Show loading state
+        timelineDiv.innerHTML =
+          '<div style="text-align: center; padding: 40px; color: #667eea;"><div style="font-size: 1.2em;">⏳ Calculating your personalized timeline...</div></div>';
+        timelineDiv.style.display = "block";
+
+        // Defer calculation to next tick to allow loading state to render
+        setTimeout(() => {
+          calculateAndRenderTimeline(
+            inputDate,
+            timelineDiv,
+            country,
+            currentStage,
+          );
+        }, 10);
+      }
+
+      function calculateAndRenderTimeline(
+        inputDate,
+        timelineDiv,
+        country,
+        currentStage = "not-started",
+      ) {
+        // Fetch visa bulletin data from backend
+        fetch("/visa-bulletin")
+          .then((response) => response.json())
+          .then((bulletinData) => {
+            renderTimelineWithBulletinData(
+              inputDate,
+              timelineDiv,
+              country,
+              currentStage,
+              bulletinData,
+            );
+          })
+          .catch((error) => {
+            console.error("Error fetching visa bulletin:", error);
+            // Fallback to hardcoded data if fetch fails
+            const fallbackData = {
+              eb2PriorityDates: {
+                India: "2013-12-01",
+                China: "2022-01-01",
+                Mexico: "2024-10-15",
+                Philippines: "2024-10-15",
+                Other: "2024-10-15",
+              },
+              movementRates: {
+                India: 60,
+                China: 180,
+                Mexico: 365,
+                Philippines: 365,
+                Other: 365,
+              },
+            };
+            renderTimelineWithBulletinData(
+              inputDate,
+              timelineDiv,
+              country,
+              currentStage,
+              fallbackData,
+            );
+          });
+      }
+
+      function renderTimelineWithBulletinData(
+        inputDate,
+        timelineDiv,
+        country,
+        currentStage,
+        bulletinData,
+      ) {
+        try {
+        // Current EB2 Priority Dates from backend
+        const currentPriorityDates = {};
+        for (const [key, value] of Object.entries(
+          bulletinData.eb2PriorityDates,
+        )) {
+          currentPriorityDates[key] = new Date(value);
+        }
+
+        // Movement rates from backend
+        const movementRates = bulletinData.movementRates;
+
+        // Calculate dates based on current stage
+        let permStart, permApprovalDate, i140ApprovalDate, optStart, stemOptStart, f1GraduationDate;
+        let startStageIndex = 0;
+        let isOptPath = false;
+
+        switch (currentStage) {
+          case "f1":
+            isOptPath = true;
+            f1GraduationDate = new Date(inputDate);
+            optStart = new Date(f1GraduationDate);
+            optStart.setDate(optStart.getDate() + 90); // OPT typically starts ~3 months after graduation
+            stemOptStart = new Date(optStart);
+            stemOptStart.setDate(stemOptStart.getDate() + 365); // STEM OPT after 1 year of OPT
+            startStageIndex = 0; // Show full path from OPT
+            break;
+          case "opt":
+            isOptPath = true;
+            optStart = new Date(inputDate);
+            // For OPT timeline, we'll show path to H1B then PERM
+            startStageIndex = 0;
+            break;
+          case "stem-opt":
+            isOptPath = true;
+            stemOptStart = new Date(inputDate);
+            optStart = new Date(stemOptStart);
+            optStart.setDate(optStart.getDate() - 365); // Assume 1 year OPT before STEM
+            startStageIndex = 1;
+            break;
+          case "not-started":
+          case "perm":
+            permStart = new Date(inputDate);
+            permApprovalDate = new Date(permStart);
+            permApprovalDate.setDate(permApprovalDate.getDate() + 390); // ~13 months for PERM
+            startStageIndex = 0;
+            break;
+          case "i140":
+            permApprovalDate = new Date(inputDate); // Input is PERM approval date (Priority Date)
+            permStart = new Date(permApprovalDate);
+            permStart.setDate(permStart.getDate() - 390);
+            startStageIndex = 1;
+            break;
+          case "i485":
+            i140ApprovalDate = new Date(inputDate);
+            permApprovalDate = new Date(i140ApprovalDate);
+            permApprovalDate.setDate(permApprovalDate.getDate() - 202); // subtract avg I-140 time
+            permStart = new Date(permApprovalDate);
+            permStart.setDate(permStart.getDate() - 390);
+            startStageIndex = 2;
+            break;
+        }
+
+        // Calculate priority date wait based on current bulletin and your future priority date
+        let priorityDateWaitDays = 0;
+        let currentPD, daysBacklog, movementRate;
+        
+        if (isOptPath) {
+          // For OPT path, calculate when PERM would be approved (this becomes the Priority Date)
+          // Estimate: OPT (365 days) + STEM OPT (730 days) + H1B start + time to start PERM (~1 year after H1B) + PERM processing (390 days)
+          const estimatedPermApprovalDate = new Date(optStart);
+          estimatedPermApprovalDate.setDate(estimatedPermApprovalDate.getDate() + 365 + 730 + 195 + 365 + 390); // Full timeline to PERM approval
+          
+          currentPD = currentPriorityDates[country] || currentPriorityDates["Other"];
+          movementRate = movementRates[country] || movementRates["Other"];
+          daysBacklog = (estimatedPermApprovalDate - currentPD) / (1000 * 60 * 60 * 24);
+          const yearsToWait = daysBacklog / movementRate;
+          priorityDateWaitDays = Math.max(0, Math.round(yearsToWait * 365));
+          
+          // Store the estimated PERM approval for display purposes
+          permApprovalDate = estimatedPermApprovalDate;
+        } else {
+          currentPD =
+            currentPriorityDates[country] || currentPriorityDates["Other"];
+          const yearsBacklogged =
+            (permApprovalDate - currentPD) / (1000 * 60 * 60 * 24 * 365);
+
+          movementRate = movementRates[country] || movementRates["Other"];
+          daysBacklog =
+            (permApprovalDate - currentPD) / (1000 * 60 * 60 * 24);
+          const yearsToWait = daysBacklog / movementRate;
+          priorityDateWaitDays = Math.max(0, Math.round(yearsToWait * 365));
+        }
+
+        // Set min/max based on calculation
+        const priorityWaitCalc = {
+          min: Math.round(priorityDateWaitDays * 0.7),
+          max: Math.round(priorityDateWaitDays * 1.3),
+          avg: priorityDateWaitDays,
+        };
+
+        // Adjust priority date wait based on country
+        // India and China have the longest waits due to per-country caps
+        const priorityDateWaitByCountry = {
+          India: priorityWaitCalc,
+          China: priorityWaitCalc,
+          Mexico: priorityWaitCalc,
+          Philippines: priorityWaitCalc,
+          Other: priorityWaitCalc,
+        };
+
+        const priorityWait =
+          priorityDateWaitByCountry[country] ||
+          priorityDateWaitByCountry["Other"];
+
+        // Define detailed timeline with substages
+        let timeline;
+        
+        if (isOptPath) {
+          // OPT/STEM OPT to Green Card pathway
+          timeline = [
+            {
+              stage: "OPT (Optional Practical Training)",
+              color: "#4CAF50",
+              steps: [
+                {
+                  name: "OPT Work Authorization",
+                  daysMin: 365,
+                  daysMax: 365,
+                  daysAvg: 365,
+                },
+              ],
+            },
+            {
+              stage: "STEM OPT Extension",
+              color: "#2196F3",
+              steps: [
+                {
+                  name: "STEM OPT Work Authorization",
+                  daysMin: 730,
+                  daysMax: 730,
+                  daysAvg: 730,
+                },
+              ],
+            },
+            {
+              stage: "H1B Work Visa",
+              color: "#FF9800",
+              steps: [
+                {
+                  name: "H1B Lottery & Processing",
+                  daysMin: 180,
+                  daysMax: 210,
+                  daysAvg: 195,
+                },
+              ],
+            },
+            {
+              stage: "PERM Labor Certification",
+              color: "#667eea",
+              steps: [
+                {
+                  name: "PWD & Recruitment",
+                  daysMin: 90,
+                  daysMax: 150,
+                  daysAvg: 120,
+                },
+                {
+                  name: "PERM Filing & Processing",
+                  daysMin: 180,
+                  daysMax: 365,
+                  daysAvg: 270,
+                },
+              ],
+            },
+            {
+              stage: "I-140 Immigrant Petition",
+              color: "#28a745",
+              steps: [
+                {
+                  name: "I-140 Processing",
+                  daysMin: 120,
+                  daysMax: 240,
+                  daysAvg: 180,
+                },
+              ],
+            },
+            {
+              stage: "I-485 Adjustment of Status",
+              color: "#fd7e14",
+              steps: [
+                {
+                  name: `Priority Date Wait (${country})`,
+                  daysMin: priorityWait.min,
+                  daysMax: priorityWait.max,
+                  daysAvg: priorityWait.avg,
+                },
+                {
+                  name: "I-485 Processing",
+                  daysMin: 180,
+                  daysMax: 540,
+                  daysAvg: 365,
+                },
+              ],
+            },
+          ];
+        } else {
+          // H1B to Green Card pathway
+          timeline = [
+          {
+            stage: "PERM Labor Certification",
+            color: "#667eea",
+            steps: [
+              {
+                name: "PWD (Prevailing Wage Determination)",
+                daysMin: 60,
+                daysMax: 90,
+                daysAvg: 75,
+              },
+              {
+                name: "Recruitment Period",
+                daysMin: 30,
+                daysMax: 60,
+                daysAvg: 45,
+              },
+              {
+                name: "PERM Filing & Processing",
+                daysMin: 180,
+                daysMax: 365,
+                daysAvg: 270,
+              },
+            ],
+          },
+          {
+            stage: "I-140 Immigrant Petition",
+            color: "#28a745",
+            steps: [
+              {
+                name: "I-140 Preparation & Filing",
+                daysMin: 15,
+                daysMax: 30,
+                daysAvg: 22,
+              },
+              {
+                name: "I-140 Processing",
+                daysMin: 120,
+                daysMax: 240,
+                daysAvg: 180,
+              },
+            ],
+          },
+          {
+            stage: "I-485 Adjustment of Status",
+            color: "#fd7e14",
+            countryNote:
+              country !== "Other"
+                ? `Priority date wait varies by country. ${country} applicants typically experience longer waits.`
+                : "",
+            steps: [
+              {
+                name: `Priority Date Wait (${country})`,
+                daysMin: priorityWait.min,
+                daysMax: priorityWait.max,
+                daysAvg: priorityWait.avg,
+              },
+              {
+                name: "I-485 Filing & Processing",
+                daysMin: 180,
+                daysMax: 540,
+                daysAvg: 365,
+              },
+              {
+                name: "Biometrics & Final Review",
+                daysMin: 30,
+                daysMax: 90,
+                daysAvg: 60,
+              },
+            ],
+          },
+        ];
+        }
+
+        let currentDate = isOptPath ? (currentStage === "f1" ? new Date(optStart) : currentStage === "opt" ? new Date(optStart) : new Date(stemOptStart)) : new Date(permStart);
+
+        // Set current date based on stage
+        if (!isOptPath) {
+          if (currentStage === "i140") {
+            currentDate = new Date(permApprovalDate);
+          } else if (currentStage === "i485") {
+            currentDate = new Date(i140ApprovalDate);
+          }
+        }
+
+        // Determine header text based on stage
+        let headerText = "";
+        switch (currentStage) {
+          case "f1":
+            headerText = `Starting from F1 graduation: ${f1GraduationDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
+            break;
+          case "opt":
+            headerText = `Starting from OPT: ${optStart.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
+            break;
+          case "stem-opt":
+            headerText = `STEM OPT started: ${stemOptStart.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
+            break;
+          case "not-started":
+            headerText = `Starting from planned PERM: ${permStart.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
+            break;
+          case "perm":
+            headerText = `PERM started: ${permStart.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
+            break;
+          case "i140":
+            headerText = `PERM approved (Priority Date): ${permApprovalDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
+            break;
+          case "i485":
+            headerText = `I-140 approved: ${i140ApprovalDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
+            break;
+        }
+
+        let timelineHtml = '';
+        
+        // For OPT path, show a header with priority date info
+        if (isOptPath) {
+          timelineHtml = `
+                <div style="background: linear-gradient(135deg, #4CAF50 0%, #2196F3 100%); padding: 25px; border-radius: 12px; color: white; margin-bottom: 20px;">
+                    <div style="font-size: 1.2em; font-weight: bold; margin-bottom: 10px;">🎓 Your Personalized Immigration Timeline</div>
+                    <div style="font-size: 0.95em; opacity: 0.9;">${headerText}</div>
+                    <div style="font-size: 0.9em; opacity: 0.85; margin-top: 5px;">Full path: OPT → STEM OPT → H1B → Green Card</div>
+                    <div style="font-size: 0.85em; opacity: 0.8; margin-top: 8px;">Estimated Priority Date: ${permApprovalDate.toLocaleDateString("en-US", { month: "short", year: "numeric" })} (when PERM approves)</div>
+                </div>
+                
+                <!-- Current Priority Date Info for OPT Path -->
+                <div style="background: #fff3cd; padding: 20px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid #ffc107;">
+                    <div style="font-size: 1.1em; font-weight: bold; color: #856404; margin-bottom: 15px;">📊 Current EB2 Priority Dates (Feb 2026 Visa Bulletin)</div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                        <div style="background: white; padding: 12px; border-radius: 8px; ${country === "India" ? "border: 2px solid #667eea;" : ""}">
+                            <div style="font-size: 0.85em; color: #666; margin-bottom: 3px;">🇮🇳 India</div>
+                            <div style="font-weight: bold; color: #dc3545;">Dec 2013</div>
+                            <div style="font-size: 0.75em; color: #999; margin-top: 2px;">~12 year backlog</div>
+                            <div style="font-size: 0.7em; color: #666; margin-top: 3px;">Moves ~2 months/year</div>
+                        </div>
+                        <div style="background: white; padding: 12px; border-radius: 8px; ${country === "China" ? "border: 2px solid #667eea;" : ""}">
+                            <div style="font-size: 0.85em; color: #666; margin-bottom: 3px;">🇨🇳 China</div>
+                            <div style="font-weight: bold; color: #fd7e14;">Jan 2022</div>
+                            <div style="font-size: 0.75em; color: #999; margin-top: 2px;">~4 year backlog</div>
+                            <div style="font-size: 0.7em; color: #666; margin-top: 3px;">Moves ~6 months/year</div>
+                        </div>
+                        <div style="background: white; padding: 12px; border-radius: 8px; ${country === "Mexico" ? "border: 2px solid #667eea;" : ""}">
+                            <div style="font-size: 0.85em; color: #666; margin-bottom: 3px;">🇲🇽 Mexico</div>
+                            <div style="font-weight: bold; color: #28a745;">Oct 2024</div>
+                            <div style="font-size: 0.75em; color: #999; margin-top: 2px;">~1.5 year backlog</div>
+                            <div style="font-size: 0.7em; color: #666; margin-top: 3px;">Moves ~12 months/year</div>
+                        </div>
+                        <div style="background: white; padding: 12px; border-radius: 8px; ${country === "Philippines" ? "border: 2px solid #667eea;" : ""}">
+                            <div style="font-size: 0.85em; color: #666; margin-bottom: 3px;">🇵🇭 Philippines</div>
+                            <div style="font-weight: bold; color: #28a745;">Oct 2024</div>
+                            <div style="font-size: 0.75em; color: #999; margin-top: 2px;">~1.5 year backlog</div>
+                            <div style="font-size: 0.7em; color: #666; margin-top: 3px;">Moves ~12 months/year</div>
+                        </div>
+                        <div style="background: white; padding: 12px; border-radius: 8px; ${country === "Other" || !country ? "border: 2px solid #667eea;" : ""}">
+                            <div style="font-size: 0.85em; color: #666; margin-bottom: 3px;">🌍 Rest of World</div>
+                            <div style="font-weight: bold; color: #28a745;">Oct 2024</div>
+                            <div style="font-size: 0.75em; color: #999; margin-top: 2px;">~1.5 year backlog</div>
+                            <div style="font-size: 0.7em; color: #666; margin-top: 3px;">Moves ~12 months/year</div>
+                        </div>
+                    </div>
+                    ${
+                      priorityDateWaitDays > 0
+                        ? `
+                        <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 8px; border-left: 4px solid ${priorityDateWaitDays > 730 ? "#dc3545" : priorityDateWaitDays > 365 ? "#fd7e14" : "#28a745"};">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #333;">⏳ Your Priority Date Wait Calculation (${country}):</div>
+                            <div style="font-size: 0.9em; color: #666; line-height: 1.6;">
+                                • Your Estimated Priority Date: <strong>${permApprovalDate.toLocaleDateString("en-US", { month: "short", year: "numeric" })}</strong> (when PERM approves after full timeline)<br>
+                                • Current Processing: <strong>${currentPD.toLocaleDateString("en-US", { month: "short", year: "numeric" })}</strong><br>
+                                • Backlog: <strong>${Math.round((daysBacklog / 365) * 10) / 10} years</strong> (${Math.round(daysBacklog)} days)<br>
+                                • Movement Rate: <strong>${Math.round(movementRate / 30)} months/year</strong><br>
+                                • <strong style="color: ${priorityDateWaitDays > 730 ? "#dc3545" : priorityDateWaitDays > 365 ? "#fd7e14" : "#28a745"};">Estimated Wait: ${(priorityDateWaitDays / 365).toFixed(1)} years</strong>
+                            </div>
+                        </div>
+                    `
+                        : `
+                        <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 8px; border-left: 4px solid #28a745;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #333;">✅ Good News for ${country}!</div>
+                            <div style="font-size: 0.9em; color: #666; line-height: 1.6;">
+                                Based on current trends, you may be able to file I-485 concurrently with I-140 or shortly after, with minimal priority date wait!
+                            </div>
+                        </div>
+                    `
+                    }
+                </div>
+          `;
+        } else {
+          timelineHtml = `
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; border-radius: 12px; color: white; margin-bottom: 20px;">
+                    <div style="font-size: 1.2em; font-weight: bold; margin-bottom: 10px;">📅 Your Personalized Green Card Timeline</div>
+                    <div style="font-size: 0.95em; opacity: 0.9;">${headerText}</div>
+                    <div style="font-size: 0.9em; opacity: 0.85; margin-top: 5px;">Your Priority Date: ${permApprovalDate.toLocaleDateString("en-US", { month: "long", year: "numeric" })}</div>
+                </div>
+                
+                <!-- Current Priority Date Info -->
+                <div style="background: #fff3cd; padding: 20px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid #ffc107;">
+                    <div style="font-size: 1.1em; font-weight: bold; color: #856404; margin-bottom: 15px;">📊 Current EB2 Priority Dates (Feb 2026 Visa Bulletin)</div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                        <div style="background: white; padding: 12px; border-radius: 8px; ${country === "India" ? "border: 2px solid #667eea;" : ""}">
+                            <div style="font-size: 0.85em; color: #666; margin-bottom: 3px;">🇮🇳 India</div>
+                            <div style="font-weight: bold; color: #dc3545;">Dec 2013</div>
+                            <div style="font-size: 0.75em; color: #999; margin-top: 2px;">~12 year backlog</div>
+                            <div style="font-size: 0.7em; color: #666; margin-top: 3px;">Moves ~2 months/year</div>
+                        </div>
+                        <div style="background: white; padding: 12px; border-radius: 8px; ${country === "China" ? "border: 2px solid #667eea;" : ""}">
+                            <div style="font-size: 0.85em; color: #666; margin-bottom: 3px;">🇨🇳 China</div>
+                            <div style="font-weight: bold; color: #fd7e14;">Jan 2022</div>
+                            <div style="font-size: 0.75em; color: #999; margin-top: 2px;">~4 year backlog</div>
+                            <div style="font-size: 0.7em; color: #666; margin-top: 3px;">Moves ~6 months/year</div>
+                        </div>
+                        <div style="background: white; padding: 12px; border-radius: 8px; ${country === "Mexico" ? "border: 2px solid #667eea;" : ""}">
+                            <div style="font-size: 0.85em; color: #666; margin-bottom: 3px;">🇲🇽 Mexico</div>
+                            <div style="font-weight: bold; color: #28a745;">Oct 2024</div>
+                            <div style="font-size: 0.75em; color: #999; margin-top: 2px;">~1.5 year backlog</div>
+                            <div style="font-size: 0.7em; color: #666; margin-top: 3px;">Moves ~12 months/year</div>
+                        </div>
+                        <div style="background: white; padding: 12px; border-radius: 8px; ${country === "Philippines" ? "border: 2px solid #667eea;" : ""}">
+                            <div style="font-size: 0.85em; color: #666; margin-bottom: 3px;">🇵🇭 Philippines</div>
+                            <div style="font-weight: bold; color: #28a745;">Oct 2024</div>
+                            <div style="font-size: 0.75em; color: #999; margin-top: 2px;">~1.5 year backlog</div>
+                            <div style="font-size: 0.7em; color: #666; margin-top: 3px;">Moves ~12 months/year</div>
+                        </div>
+                        <div style="background: white; padding: 12px; border-radius: 8px; ${country === "Other" || !country ? "border: 2px solid #667eea;" : ""}">
+                            <div style="font-size: 0.85em; color: #666; margin-bottom: 3px;">🌍 Rest of World</div>
+                            <div style="font-weight: bold; color: #28a745;">Oct 2024</div>
+                            <div style="font-size: 0.75em; color: #999; margin-top: 2px;">~1.5 year backlog</div>
+                            <div style="font-size: 0.7em; color: #666; margin-top: 3px;">Moves ~12 months/year</div>
+                        </div>
+                    </div>
+                    ${
+                      priorityDateWaitDays > 0
+                        ? `
+                        <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 8px; border-left: 4px solid ${priorityDateWaitDays > 730 ? "#dc3545" : priorityDateWaitDays > 365 ? "#fd7e14" : "#28a745"};">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #333;">⏳ Your Priority Date Wait Calculation (${country}):</div>
+                            <div style="font-size: 0.9em; color: #666; line-height: 1.6;">
+                                • Your Priority Date: <strong>${permApprovalDate.toLocaleDateString("en-US", { month: "short", year: "numeric" })}</strong> (when PERM approves)<br>
+                                • Current Processing: <strong>${currentPD.toLocaleDateString("en-US", { month: "short", year: "numeric" })}</strong><br>
+                                • Backlog: <strong>${Math.round((daysBacklog / 365) * 10) / 10} years</strong> (${Math.round(daysBacklog)} days)<br>
+                                • Movement Rate: <strong>${Math.round(movementRate / 30)} months/year</strong><br>
+                                • <strong style="color: ${priorityDateWaitDays > 730 ? "#dc3545" : priorityDateWaitDays > 365 ? "#fd7e14" : "#28a745"};">Estimated Wait: ${(priorityDateWaitDays / 365).toFixed(1)} years</strong>
+                            </div>
+                        </div>
+                    `
+                        : ""
+                    }
+                </div>
+          `;
+        }
+        
+        timelineHtml += `<div style="position: relative;">
+            `;
+
+        timeline.forEach((stage, stageIndex) => {
+          // Skip completed stages
+          if (stageIndex < startStageIndex) {
+            return;
+          }
+
+          const isCompleted = stageIndex < startStageIndex;
+          const isCurrent = stageIndex === startStageIndex;
+          const stageStartDate = new Date(currentDate);
+          let stageTotalDays = 0;
+
+          // Add status indicator
+          let statusBadge = "";
+          if (isCompleted) {
+            statusBadge =
+              '<span style="background: #28a745; color: white; padding: 4px 12px; border-radius: 12px; font-size: 0.85em; margin-left: 10px;">✓ Completed</span>';
+          } else if (isCurrent) {
+            statusBadge =
+              '<span style="background: #667eea; color: white; padding: 4px 12px; border-radius: 12px; font-size: 0.85em; margin-left: 10px;">🔄 Current Stage</span>';
+          }
+
+          timelineHtml += `
+                    <div style="margin-bottom: 30px; padding: 20px; background: ${isCurrent ? "#e7f1ff" : "#f8f9fa"}; border-radius: 12px; border-left: 5px solid ${stage.color};">
+                        <div style="font-size: 1.2em; font-weight: bold; color: #333; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                            <span style="background: ${stage.color}; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8em;">
+                                ${stageIndex + 1}
+                            </span>
+                            ${stage.stage}
+                            ${statusBadge}
+                        </div>
+                        ${
+                          stage.countryNote
+                            ? `
+                            <div style="margin-left: 42px; margin-bottom: 15px; padding: 12px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 8px;">
+                                <strong>⚠️ Country-Specific Wait:</strong> ${stage.countryNote}
+                            </div>
+                        `
+                            : ""
+                        }
+                        <div style="margin-left: 42px;">
+                `;
+
+          stage.steps.forEach((step, stepIndex) => {
+            const stepStartDate = new Date(currentDate);
+            currentDate.setDate(currentDate.getDate() + step.daysAvg);
+            const stepEndDate = new Date(currentDate);
+            stageTotalDays += step.daysAvg;
+
+            const isLast = stepIndex === stage.steps.length - 1;
+
+            timelineHtml += `
+                        <div style="position: relative; padding-bottom: ${isLast ? "0" : "20px"};">
+                            ${!isLast ? '<div style="position: absolute; left: 11px; top: 30px; bottom: 0; width: 2px; background: #dee2e6;"></div>' : ""}
+                            <div style="display: flex; gap: 15px; align-items: start;">
+                                <div style="background: white; border: 3px solid ${stage.color}; width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0; z-index: 1; position: relative;"></div>
+                                <div style="flex: 1; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                    <div style="font-weight: 600; color: #333; margin-bottom: 5px;">${step.name}</div>
+                                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                                        <div style="font-size: 0.85em; color: #666;">
+                                            <strong>Start:</strong> ${stepStartDate.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                                            <br>
+                                            <strong>Est. Complete:</strong> ${stepEndDate.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                                        </div>
+                                        <div style="text-align: right;">
+                                            <div style="font-weight: bold; color: ${stage.color}; font-size: 1.1em;">${step.daysAvg} days</div>
+                                            <div style="font-size: 0.8em; color: #666;">(${step.daysMin}-${step.daysMax} range)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+          });
+
+          const stageEndDate = new Date(currentDate);
+          const stageMonths = Math.round(stageTotalDays / 30);
+
+          timelineHtml += `
+                        </div>
+                        <div style="margin-top: 15px; padding: 12px; background: white; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
+                            <div style="font-weight: 600; color: #333;">Stage Completion:</div>
+                            <div>
+                                <span style="font-weight: bold; color: ${stage.color}; font-size: 1.1em;">${stageEndDate.toLocaleDateString("en-US", { month: "long", year: "numeric" })}</span>
+                                <span style="color: #666; font-size: 0.9em; margin-left: 10px;">(~${stageMonths} months)</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+        });
+
+        timelineHtml += "</div>";
+
+        // Calculate total timeline - use appropriate start date
+        const startDate = isOptPath ? (f1GraduationDate || optStart) : permStart;
+        const greenCardDate = new Date(currentDate);
+        const totalDays = startDate ? Math.round(
+          (greenCardDate - startDate) / (1000 * 60 * 60 * 24),
+        ) : 0;
+        const totalMonths = !isNaN(totalDays) ? Math.round(totalDays / 30) : 0;
+        const totalYears = !isNaN(totalDays) ? (totalDays / 365).toFixed(1) : "0.0";
+
+        timelineHtml += `
+                <div style="margin-top: 25px; padding: 30px; background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; border-radius: 12px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                    <div style="font-size: 1.1em; opacity: 0.95; margin-bottom: 15px;">🎉 Estimated Green Card Approval Date</div>
+                    <div style="font-size: 3em; font-weight: bold; margin-bottom: 10px;">
+                        ${greenCardDate.toLocaleDateString("en-US", { month: "long", year: "numeric" })}
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px;">
+                        <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px;">
+                            <div style="font-size: 2em; font-weight: bold;">${totalYears}</div>
+                            <div style="font-size: 0.9em; opacity: 0.9;">years</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px;">
+                            <div style="font-size: 2em; font-weight: bold;">${totalMonths}</div>
+                            <div style="font-size: 0.9em; opacity: 0.9;">months</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px;">
+                            <div style="font-size: 2em; font-weight: bold;">${totalDays}</div>
+                            <div style="font-size: 0.9em; opacity: 0.9;">days</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px; font-size: 0.9em; opacity: 0.9;">
+                        * Timeline based on average processing times. Actual dates may vary.
+                    </div>
+                </div>
+            `;
+
+        timelineDiv.innerHTML = timelineHtml;
+        timelineDiv.style.display = "block";
+
+        // Scroll to the timeline
+        timelineDiv.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        } catch (error) {
+          console.error("Error rendering timeline:", error);
+          timelineDiv.innerHTML = `
+            <div style="text-align: center; padding: 40px; color: #dc3545;">
+              <div style="font-size: 1.2em; margin-bottom: 10px;">❌ Error calculating timeline</div>
+              <div style="font-size: 0.9em; opacity: 0.8;">${error.message}</div>
+              <div style="font-size: 0.8em; margin-top: 10px; opacity: 0.7;">Check the browser console for more details</div>
+            </div>
+          `;
+          timelineDiv.style.display = "block";
+        }
+      }
+
+      // Calculate days remaining
+      function calculateDaysRemaining(expirationDate, visaType = "H1B") {
+        if (!expirationDate) {
+          return; // Exit if no expiration date
+        }
+        
+        const today = new Date();
+        const expDate = new Date(expirationDate);
+        
+        // Validate the date
+        if (isNaN(expDate.getTime())) {
+          console.error("Invalid expiration date:", expirationDate);
+          return; // Exit if invalid date
+        }
+        
+        const diffTime = expDate - today;
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        const daysRemainingCard = document.getElementById(
+          "days-remaining-card",
+        );
+        const daysRemainingDiv = document.getElementById("days-remaining");
+        const percentageDiv = document.getElementById("days-percentage");
+
+        if (diffDays > 0) {
+          daysRemainingCard.style.display = "block";
+
+          // Calculate total years and months with validation
+          const totalYears = !isNaN(diffDays) ? (diffDays / 365).toFixed(2) : "0.00";
+          const totalMonths = !isNaN(diffDays) ? Math.floor(diffDays / 30) : 0;
+          const displayDays = !isNaN(diffDays) ? diffDays.toLocaleString() : "0";
+
+          daysRemainingDiv.innerHTML = `
+                    <div style="font-size: 0.4em; opacity: 0.9; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px;">Time Remaining on ${visaType}</div>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                        <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 12px;">
+                            <div style="font-size: 0.35em; opacity: 0.9; margin-bottom: 8px;">TOTAL YEARS</div>
+                            <div style="font-size: 0.9em; font-weight: bold;">${totalYears}</div>
+                            <div style="font-size: 0.3em; opacity: 0.8; margin-top: 5px;">years</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 12px;">
+                            <div style="font-size: 0.35em; opacity: 0.9; margin-bottom: 8px;">TOTAL MONTHS</div>
+                            <div style="font-size: 0.9em; font-weight: bold;">${totalMonths}</div>
+                            <div style="font-size: 0.3em; opacity: 0.8; margin-top: 5px;">months</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 12px;">
+                            <div style="font-size: 0.35em; opacity: 0.9; margin-bottom: 8px;">TOTAL DAYS</div>
+                            <div style="font-size: 0.9em; font-weight: bold;">${displayDays}</div>
+                            <div style="font-size: 0.3em; opacity: 0.8; margin-top: 5px;">days</div>
+                        </div>
+                    </div>
+                `;
+
+          // Calculate percentage of time elapsed (approximate 3-year H1B)
+          const totalDays = 3 * 365; // Approximate total H1B duration
+          const percentage = !isNaN(diffDays) ? (
+            ((totalDays - diffDays) / totalDays) *
+            100
+          ).toFixed(1) : "0.0";
+          percentageDiv.textContent = `${percentage}% of H1B period used`;
+
+          // Change color based on urgency
+          if (diffDays < 180) {
+            daysRemainingCard.style.background =
+              "linear-gradient(135deg, #dc3545 0%, #fd7e14 100%)";
+          } else if (diffDays < 365) {
+            daysRemainingCard.style.background =
+              "linear-gradient(135deg, #ffc107 0%, #ff9800 100%)";
+          }
+        } else {
+          daysRemainingCard.style.display = "block";
+          daysRemainingCard.style.background =
+            "linear-gradient(135deg, #6c757d 0%, #495057 100%)";
+          daysRemainingDiv.textContent = "EXPIRED";
+          percentageDiv.textContent = `Expired ${Math.abs(diffDays)} days ago`;
+        }
+      }
+
+      // Handle country change
+      async function handleCountryChange() {
+        const country = document.getElementById("country").value;
+        const visaType = document.getElementById("visa-type").value;
+        const startDate = document.getElementById("start-date").value;
+        const endDate = document.getElementById("end-date").value;
+
+        // Update the global country variable immediately
+        window.userCountry = country || "Other";
+
+        if (!visaType || !startDate || !endDate) {
+          return; // Don't save if required fields are missing
+        }
+
+        try {
+          // Save the country change
+          const response = await fetch("/visa", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              visaType: visaType,
+              country: country,
+              startDate: startDate,
+              expirationDate: endDate,
+            }),
+          });
+
+          if (response.ok) {
+            // If personalized timeline is visible, recalculate it immediately
+            const stageInput = document.getElementById("stage-date").value;
+            if (stageInput) {
+              calculatePersonalizedTimeline();
+            }
+          }
+        } catch (error) {
+          console.error("Error updating country:", error);
+        }
+      }
+
+      // Update dates
+      async function updateDates() {
+        const visaType = document.getElementById("visa-type").value;
+        const country = document.getElementById("country").value;
+        const startDate = document.getElementById("start-date").value;
+        const endDate = document.getElementById("end-date").value;
+
+        if (!visaType || !startDate || !endDate) {
+          alert("Please fill in visa type, start date, and end date");
+          return;
+        }
+
+        if (new Date(startDate) >= new Date(endDate)) {
+          alert("End date must be after start date");
+          return;
+        }
+
+        try {
+          const response = await fetch("/visa", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              visaType: visaType,
+              country: country,
+              startDate: startDate,
+              expirationDate: endDate,
+            }),
+          });
+
+          if (response.ok) {
+            alert("✅ Visa information updated successfully!");
+            loadVisaStatus();
+          } else {
+            throw new Error("Update failed");
+          }
+        } catch (error) {
+          console.error("Error updating dates:", error);
+          alert("❌ Error updating dates. Please try again.");
+        }
+      }
+
+      // Fetch timeline
+      async function loadTimeline() {
+        try {
+          const response = await fetch("/timeline");
+          const data = await response.json();
+
+          let timelineHtml = "";
+          data.stages.forEach((stage, index) => {
+            timelineHtml += `
+                        <div class="timeline-item">
+                            <div class="timeline-marker">${index + 1}</div>
+                            <div class="timeline-content">
+                                <div class="stage-name">${stage.stageName}</div>
+                                <div class="stage-info">
+                                    <div class="stage-stat">
+                                        <div class="stage-stat-label">Average</div>
+                                        <div class="stage-stat-value">${stage.averageDays} days</div>
+                                    </div>
+                                    <div class="stage-stat">
+                                        <div class="stage-stat-label">Min</div>
+                                        <div class="stage-stat-value">${stage.minDays} days</div>
+                                    </div>
+                                    <div class="stage-stat">
+                                        <div class="stage-stat-label">Max</div>
+                                        <div class="stage-stat-value">${stage.maxDays} days</div>
+                                    </div>
+                                </div>
+                                <div class="stage-notes">${stage.notes}</div>
+                            </div>
+                        </div>
+                    `;
+          });
+
+          timelineHtml += `
+                    <div class="total-timeline">
+                        <h3>Total Journey</h3>
+                        <div class="total-days">${data.totalDays}</div>
+                        <div>days (approximately ${Math.round(data.totalDays / 30)} months)</div>
+                    </div>
+                `;
+
+          document.getElementById("timeline").innerHTML = timelineHtml;
+        } catch (error) {
+          document.getElementById("timeline").innerHTML =
+            '<div style="color: red;">Error loading timeline</div>';
+        }
+      }
+
+      // Get AI explanation
+      async function getExplanation() {
+        const select = document.getElementById("stage-select");
+        const stageName = select.value;
+
+        if (!stageName) {
+          alert("Please select a stage first");
+          return;
+        }
+
+        const stageData = {
+          H1B: { averageDays: 180, minDays: 120, maxDays: 240 },
+          PERM: { averageDays: 180, minDays: 150, maxDays: 210 },
+          "I-140": { averageDays: 120, minDays: 90, maxDays: 150 },
+          "I-485": { averageDays: 180, minDays: 150, maxDays: 210 },
+        };
+
+        const responseDiv = document.getElementById("ai-response");
+        responseDiv.style.display = "block";
+        responseDiv.innerHTML =
+          '<div class="loading">🤖 AI is thinking...</div>';
+
+        document.getElementById("explain-btn").disabled = true;
+        document.getElementById("steps-btn").disabled = true;
+
+        try {
+          const response = await fetch("/explain", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              currentStage: {
+                stageName: stageName,
+                ...stageData[stageName],
+              },
+            }),
+          });
+
+          const data = await response.json();
+
+          if (data.error) {
+            responseDiv.innerHTML = `<strong>⚠️ AI Not Available</strong><br><br>${data.error}<br><br><em>Note: Ollama model is still downloading. Please try again in a few minutes.</em>`;
+          } else {
+            responseDiv.innerHTML = `<strong>📖 AI Explanation for ${stageName}:</strong><br><br><div style="line-height: 1.6;">${formatMarkdown(data.explanation)}</div>`;
+          }
+        } catch (error) {
+          responseDiv.innerHTML = `<strong>❌ Error:</strong><br><br>${error.message}`;
+        } finally {
+          document.getElementById("explain-btn").disabled = false;
+          document.getElementById("steps-btn").disabled = false;
+        }
+      }
+
+      // Get next steps
+      async function getNextSteps() {
+        const select = document.getElementById("stage-select");
+        const stageName = select.value;
+
+        if (!stageName) {
+          alert("Please select a stage first");
+          return;
+        }
+
+        const stageData = {
+          H1B: { averageDays: 180, minDays: 120, maxDays: 240 },
+          PERM: { averageDays: 180, minDays: 150, maxDays: 210 },
+          "I-140": { averageDays: 120, minDays: 90, maxDays: 150 },
+          "I-485": { averageDays: 180, minDays: 150, maxDays: 210 },
+        };
+
+        const responseDiv = document.getElementById("ai-response");
+        responseDiv.style.display = "block";
+        responseDiv.innerHTML =
+          '<div class="loading">🤖 AI is preparing recommendations...</div>';
+
+        document.getElementById("explain-btn").disabled = true;
+        document.getElementById("steps-btn").disabled = true;
+
+        try {
+          const response = await fetch("/next-steps", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              currentStage: {
+                stageName: stageName,
+                ...stageData[stageName],
+              },
+            }),
+          });
+
+          const data = await response.json();
+
+          if (data.error) {
+            responseDiv.innerHTML = `<strong>⚠️ AI Not Available</strong><br><br>${data.error}<br><br><em>Note: Ollama model is still downloading. Please try again in a few minutes.</em>`;
+          } else {
+            responseDiv.innerHTML = `<strong>🚀 Next Steps for ${stageName}:</strong><br><br><div style="line-height: 1.6;">${formatMarkdown(data.nextSteps)}</div>`;
+          }
+        } catch (error) {
+          responseDiv.innerHTML = `<strong>❌ Error:</strong><br><br>${error.message}`;
+        } finally {
+          document.getElementById("explain-btn").disabled = false;
+          document.getElementById("steps-btn").disabled = false;
+        }
+      }
+
+      // Format markdown to HTML
+      function formatMarkdown(text) {
+        let formatted = text;
+        
+        // Step 1: Convert headers first (###)
+        formatted = formatted.replace(/###\s*(.+)/g, '<h3 style="color: #667eea; margin-top: 24px; margin-bottom: 12px; font-size: 1.15em; font-weight: 600;">$1</h3>');
+        
+        // Step 2: Convert numbered section headers with bold (1. **Title:** or 1. **Title**)
+        formatted = formatted.replace(/(\d+)\.\s*\*\*([^*]+)\*\*:?/g, '<div style="margin-top: 20px; margin-bottom: 12px; font-size: 1.05em; font-weight: 600; color: #333;">$1. $2</div>');
+        
+        // Step 3: Convert all remaining bold text (**text**)
+        formatted = formatted.replace(/\*\*([^*]+)\*\*/g, '<strong style="color: #667eea;">$1</strong>');
+        
+        // Step 4: Convert nested bullets (4+ spaces before asterisk)
+        formatted = formatted.replace(/\n\s{4,}\*\s*([^\n]+)/g, '\n<li style="margin-bottom: 8px; margin-left: 24px; line-height: 1.6; list-style-type: circle;">$1</li>');
+        
+        // Step 5: Convert regular bullets
+        formatted = formatted.replace(/\n\*\s*([^\n]+)/g, '\n<li style="margin-bottom: 6px; line-height: 1.6;">$1</li>');
+        
+        // Step 6: Wrap consecutive <li> in <ul>
+        formatted = formatted.replace(/(<li[^>]*>.*?<\/li>\s*)+/g, function(match) {
+          return '<ul style="margin: 8px 0 16px 0; padding-left: 20px; list-style-position: outside;">' + match + '</ul>';
+        });
+        
+        // Step 7: Paragraph breaks
+        formatted = formatted.replace(/\n\n+/g, '<div style="margin: 12px 0;"></div>');
+        
+        // Step 8: Clean up remaining newlines
+        formatted = formatted.replace(/\n/g, ' ');
+        
+        // Step 9: Final asterisk cleanup - remove any remaining asterisks
+        formatted = formatted.replace(/\*/g, '');
+        
+        return formatted;
+      }
+
+      // Load data on page load
+      window.addEventListener("load", () => {
+        console.log("Page loaded! Starting to load visa status...");
+        loadVisaStatus();
+        // Defer timeline load to improve initial page load speed
+        setTimeout(() => loadTimeline(), 200);
+      });
+    </script>
+  </body>
+</html>

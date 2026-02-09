@@ -1,0 +1,9 @@
+{
+  "currentVisa": {
+    "visaType": "F1",
+    "country": "India",
+    "startDate": "2024-12-05",
+    "expirationDate": "2026-12-15",
+    "status": "ACTIVE"
+  }
+}
