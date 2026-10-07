@@ -4,16 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GreenPath - Your Immigration Journey Planner</title>
-    
+
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QCX3G9KSPC"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-QCX3G9KSPC"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-QCX3G9KSPC');
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-QCX3G9KSPC");
     </script>
-    
+
     <style>
       * {
         margin: 0;
@@ -34,13 +39,17 @@
       }
 
       body::before {
-        content: '';
+        content: "";
         position: fixed;
         top: -50%;
         left: -50%;
         width: 200%;
         height: 200%;
-        background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1) 1px,
+          transparent 1px
+        );
         background-size: 50px 50px;
         animation: backgroundScroll 60s linear infinite;
         pointer-events: none;
@@ -48,8 +57,12 @@
       }
 
       @keyframes backgroundScroll {
-        0% { transform: translate(0, 0); }
-        100% { transform: translate(50px, 50px); }
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(50px, 50px);
+        }
       }
 
       .container {
@@ -80,7 +93,12 @@
       h1 {
         font-size: 2.8em;
         margin-bottom: 10px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        background: linear-gradient(
+          135deg,
+          #667eea 0%,
+          #764ba2 50%,
+          #f093fb 100%
+        );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -91,7 +109,8 @@
       }
 
       @keyframes gradientShift {
-        0%, 100% {
+        0%,
+        100% {
           filter: hue-rotate(0deg);
         }
         50% {
@@ -134,10 +153,18 @@
         }
       }
 
-      .card:nth-child(2) { animation-delay: 0.1s; }
-      .card:nth-child(3) { animation-delay: 0.2s; }
-      .card:nth-child(4) { animation-delay: 0.3s; }
-      .card:nth-child(5) { animation-delay: 0.4s; }
+      .card:nth-child(2) {
+        animation-delay: 0.1s;
+      }
+      .card:nth-child(3) {
+        animation-delay: 0.2s;
+      }
+      .card:nth-child(4) {
+        animation-delay: 0.3s;
+      }
+      .card:nth-child(5) {
+        animation-delay: 0.4s;
+      }
 
       .visa-status {
         display: grid;
@@ -304,7 +331,7 @@
       }
 
       button::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 50%;
         left: 50%;
@@ -313,7 +340,9 @@
         border-radius: 50%;
         background: rgba(255, 255, 255, 0.3);
         transform: translate(-50%, -50%);
-        transition: width 0.6s, height 0.6s;
+        transition:
+          width 0.6s,
+          height 0.6s;
       }
 
       button:hover::before {
@@ -387,7 +416,7 @@
       }
 
       h2::after {
-        content: '';
+        content: "";
         position: absolute;
         bottom: 0;
         left: 0;
@@ -402,21 +431,41 @@
     <div class="container">
       <header>
         <h1>🌟 GreenPath</h1>
-        <p class="subtitle">
-          Your Personalized Immigration Journey Planner
-        </p>
+        <p class="subtitle">Your Personalized Immigration Journey Planner</p>
       </header>
 
       <!-- Legal Disclaimer -->
-      <div style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 12px; padding: 20px; margin-bottom: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-        <div style="display: flex; align-items: start; gap: 15px;">
-          <div style="font-size: 2em; flex-shrink: 0;">⚠️</div>
+      <div
+        style="
+          background: #fff3cd;
+          border: 2px solid #ffc107;
+          border-radius: 12px;
+          padding: 20px;
+          margin-bottom: 30px;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        "
+      >
+        <div style="display: flex; align-items: start; gap: 15px">
+          <div style="font-size: 2em; flex-shrink: 0">⚠️</div>
           <div>
-            <h3 style="color: #856404; margin: 0 0 10px 0; font-size: 1.2em;">Legal Disclaimer</h3>
-            <p style="color: #856404; margin: 0; line-height: 1.6; font-size: 0.95em;">
-              <strong>This is not legal advice.</strong> This tool is for informational and educational purposes only as part of a personal project. 
-              Immigration laws and processing times are subject to change. The developer is not responsible for any decisions made based on the 
-              information provided by this tool. For official immigration advice, please consult with a licensed immigration attorney or accredited representative.
+            <h3 style="color: #856404; margin: 0 0 10px 0; font-size: 1.2em">
+              Legal Disclaimer
+            </h3>
+            <p
+              style="
+                color: #856404;
+                margin: 0;
+                line-height: 1.6;
+                font-size: 0.95em;
+              "
+            >
+              <strong>This is not legal advice.</strong> This tool is for
+              informational and educational purposes only as part of a personal
+              project. Immigration laws and processing times are subject to
+              change. The developer is not responsible for any decisions made
+              based on the information provided by this tool. For official
+              immigration advice, please consult with a licensed immigration
+              attorney or accredited representative.
             </p>
           </div>
         </div>
@@ -688,10 +737,13 @@
                 "
               >
                 <option value="f1">Currently F1 Student</option>
-                <option value="opt">On OPT (Optional Practical Training)</option>
+                <option value="opt">
+                  On OPT (Optional Practical Training)
+                </option>
                 <option value="stem-opt">On STEM OPT Extension</option>
                 <option value="not-started">
-                  On H1B - Haven't started Green Card yet (Planning to start PERM)
+                  On H1B - Haven't started Green Card yet (Planning to start
+                  PERM)
                 </option>
                 <option value="perm">Currently in PERM process</option>
                 <option value="i140">PERM approved, in I-140 process</option>
@@ -873,7 +925,10 @@
             `Days Remaining on ${data.currentVisa.visaType}`;
 
           // Calculate days remaining and pass visa type
-          calculateDaysRemaining(data.currentVisa.expirationDate, data.currentVisa.visaType);
+          calculateDaysRemaining(
+            data.currentVisa.expirationDate,
+            data.currentVisa.visaType,
+          );
 
           // Store visa type globally
           window.currentVisaType = data.currentVisa.visaType;
@@ -1231,7 +1286,8 @@
         switch (stage) {
           case "f1":
             dateLabel.textContent = "Graduation Date (or Expected):";
-            dateHelp.textContent = "Enter your graduation date to calculate OPT timeline";
+            dateHelp.textContent =
+              "Enter your graduation date to calculate OPT timeline";
             dateInput.value = today;
             break;
           case "opt":
@@ -1275,7 +1331,7 @@
         );
 
         const stageInfo = {
-          "f1": {
+          f1: {
             name: "OPT (Optional Practical Training)",
             description:
               "Apply for 12 months of work authorization after graduation",
@@ -1285,13 +1341,14 @@
             timingDetail:
               "Submit OPT application to USCIS with I-20 from your DSO. Processing takes 3-5 months, so apply early!",
           },
-          "opt": {
+          opt: {
             name: "STEM OPT Extension",
             description:
               "Extend your work authorization for 24 additional months if you have a STEM degree",
             avgDuration: "24 months",
             action: "Apply for STEM OPT extension before your OPT expires",
-            timing: "Apply at least 90 days before OPT expires, no earlier than 150 days",
+            timing:
+              "Apply at least 90 days before OPT expires, no earlier than 150 days",
             timingDetail:
               "Requires employer to have E-Verify and complete I-983 training plan. Gives you total of 3 years work authorization!",
           },
@@ -1301,7 +1358,8 @@
               "Transition to H1B for renewable 3-year work authorization leading to Green Card",
             avgDuration: "3 years (extendable to 6)",
             action: "Find employer to sponsor H1B petition",
-            timing: "H1B lottery registration is typically in March, starts October 1st",
+            timing:
+              "H1B lottery registration is typically in March, starts October 1st",
             timingDetail:
               "Use your STEM OPT time wisely! Secure H1B sponsorship and you can even start PERM process on STEM OPT.",
           },
@@ -1321,7 +1379,8 @@
               "Extend your work authorization for 24 additional months if you have a STEM degree",
             avgDuration: "24 months",
             action: "Apply for STEM OPT extension before your OPT expires",
-            timing: "Apply at least 90 days before OPT expires, no earlier than 150 days",
+            timing:
+              "Apply at least 90 days before OPT expires, no earlier than 150 days",
             timingDetail:
               "Requires employer to have E-Verify and complete I-983 training plan",
           },
@@ -1331,7 +1390,8 @@
               "Transition to H1B work visa for long-term employment authorization",
             avgDuration: "3 years (extendable to 6)",
             action: "Find employer to sponsor H1B petition",
-            timing: "H1B lottery registration is typically in March, starts October 1st",
+            timing:
+              "H1B lottery registration is typically in March, starts October 1st",
             timingDetail:
               "Plan ahead - the lottery happens once a year. Consider cap-exempt employers if you don't get selected",
           },
@@ -1365,7 +1425,8 @@
           },
           i485: {
             name: "Green Card Final Stage",
-            description: "Complete I-485 process and wait for app (only for the full F1 pathway view)roval",
+            description:
+              "Complete I-485 process and wait for app (only for the full F1 pathway view)roval",
             avgDuration: "6-18 months",
             action: "Monitor case status and respond to any RFEs",
             timing: "Already in final stage",
@@ -1374,7 +1435,7 @@
         };
 
         const info = stageInfo[stage];
-        
+
         // Show single next step for all stages
         if (info) {
           nextActionContent.innerHTML = `
@@ -1445,11 +1506,11 @@
             // Fallback to hardcoded data if fetch fails
             const fallbackData = {
               eb2PriorityDates: {
-                India: "2013-12-01",
-                China: "2022-01-01",
-                Mexico: "2024-10-15",
-                Philippines: "2024-10-15",
-                Other: "2024-10-15",
+                India: "2013-11-01",
+                China: "2021-10-01",
+                Mexico: "2025-01-01",
+                Philippines: "2025-01-01",
+                Other: "2025-01-01",
               },
               movementRates: {
                 India: 60,
@@ -1477,329 +1538,344 @@
         bulletinData,
       ) {
         try {
-        // Current EB2 Priority Dates from backend
-        const currentPriorityDates = {};
-        for (const [key, value] of Object.entries(
-          bulletinData.eb2PriorityDates,
-        )) {
-          currentPriorityDates[key] = new Date(value);
-        }
-
-        // Movement rates from backend
-        const movementRates = bulletinData.movementRates;
-
-        // Calculate dates based on current stage
-        let permStart, permApprovalDate, i140ApprovalDate, optStart, stemOptStart, f1GraduationDate;
-        let startStageIndex = 0;
-        let isOptPath = false;
-
-        switch (currentStage) {
-          case "f1":
-            isOptPath = true;
-            f1GraduationDate = new Date(inputDate);
-            optStart = new Date(f1GraduationDate);
-            optStart.setDate(optStart.getDate() + 90); // OPT typically starts ~3 months after graduation
-            stemOptStart = new Date(optStart);
-            stemOptStart.setDate(stemOptStart.getDate() + 365); // STEM OPT after 1 year of OPT
-            startStageIndex = 0; // Show full path from OPT
-            break;
-          case "opt":
-            isOptPath = true;
-            optStart = new Date(inputDate);
-            // For OPT timeline, we'll show path to H1B then PERM
-            startStageIndex = 0;
-            break;
-          case "stem-opt":
-            isOptPath = true;
-            stemOptStart = new Date(inputDate);
-            optStart = new Date(stemOptStart);
-            optStart.setDate(optStart.getDate() - 365); // Assume 1 year OPT before STEM
-            startStageIndex = 1;
-            break;
-          case "not-started":
-          case "perm":
-            permStart = new Date(inputDate);
-            permApprovalDate = new Date(permStart);
-            permApprovalDate.setDate(permApprovalDate.getDate() + 390); // ~13 months for PERM
-            startStageIndex = 0;
-            break;
-          case "i140":
-            permApprovalDate = new Date(inputDate); // Input is PERM approval date (Priority Date)
-            permStart = new Date(permApprovalDate);
-            permStart.setDate(permStart.getDate() - 390);
-            startStageIndex = 1;
-            break;
-          case "i485":
-            i140ApprovalDate = new Date(inputDate);
-            permApprovalDate = new Date(i140ApprovalDate);
-            permApprovalDate.setDate(permApprovalDate.getDate() - 202); // subtract avg I-140 time
-            permStart = new Date(permApprovalDate);
-            permStart.setDate(permStart.getDate() - 390);
-            startStageIndex = 2;
-            break;
-        }
-
-        // Calculate priority date wait based on current bulletin and your future priority date
-        let priorityDateWaitDays = 0;
-        let currentPD, daysBacklog, movementRate;
-        
-        if (isOptPath) {
-          // For OPT path, calculate when PERM would be approved (this becomes the Priority Date)
-          // Estimate: OPT (365 days) + STEM OPT (730 days) + H1B start + time to start PERM (~1 year after H1B) + PERM processing (390 days)
-          const estimatedPermApprovalDate = new Date(optStart);
-          estimatedPermApprovalDate.setDate(estimatedPermApprovalDate.getDate() + 365 + 730 + 195 + 365 + 390); // Full timeline to PERM approval
-          
-          currentPD = currentPriorityDates[country] || currentPriorityDates["Other"];
-          movementRate = movementRates[country] || movementRates["Other"];
-          daysBacklog = (estimatedPermApprovalDate - currentPD) / (1000 * 60 * 60 * 24);
-          const yearsToWait = daysBacklog / movementRate;
-          priorityDateWaitDays = Math.max(0, Math.round(yearsToWait * 365));
-          
-          // Store the estimated PERM approval for display purposes
-          permApprovalDate = estimatedPermApprovalDate;
-        } else {
-          currentPD =
-            currentPriorityDates[country] || currentPriorityDates["Other"];
-          const yearsBacklogged =
-            (permApprovalDate - currentPD) / (1000 * 60 * 60 * 24 * 365);
-
-          movementRate = movementRates[country] || movementRates["Other"];
-          daysBacklog =
-            (permApprovalDate - currentPD) / (1000 * 60 * 60 * 24);
-          const yearsToWait = daysBacklog / movementRate;
-          priorityDateWaitDays = Math.max(0, Math.round(yearsToWait * 365));
-        }
-
-        // Set min/max based on calculation
-        const priorityWaitCalc = {
-          min: Math.round(priorityDateWaitDays * 0.7),
-          max: Math.round(priorityDateWaitDays * 1.3),
-          avg: priorityDateWaitDays,
-        };
-
-        // Adjust priority date wait based on country
-        // India and China have the longest waits due to per-country caps
-        const priorityDateWaitByCountry = {
-          India: priorityWaitCalc,
-          China: priorityWaitCalc,
-          Mexico: priorityWaitCalc,
-          Philippines: priorityWaitCalc,
-          Other: priorityWaitCalc,
-        };
-
-        const priorityWait =
-          priorityDateWaitByCountry[country] ||
-          priorityDateWaitByCountry["Other"];
-
-        // Define detailed timeline with substages
-        let timeline;
-        
-        if (isOptPath) {
-          // OPT/STEM OPT to Green Card pathway
-          timeline = [
-            {
-              stage: "OPT (Optional Practical Training)",
-              color: "#4CAF50",
-              steps: [
-                {
-                  name: "OPT Work Authorization",
-                  daysMin: 365,
-                  daysMax: 365,
-                  daysAvg: 365,
-                },
-              ],
-            },
-            {
-              stage: "STEM OPT Extension",
-              color: "#2196F3",
-              steps: [
-                {
-                  name: "STEM OPT Work Authorization",
-                  daysMin: 730,
-                  daysMax: 730,
-                  daysAvg: 730,
-                },
-              ],
-            },
-            {
-              stage: "H1B Work Visa",
-              color: "#FF9800",
-              steps: [
-                {
-                  name: "H1B Lottery & Processing",
-                  daysMin: 180,
-                  daysMax: 210,
-                  daysAvg: 195,
-                },
-              ],
-            },
-            {
-              stage: "PERM Labor Certification",
-              color: "#667eea",
-              steps: [
-                {
-                  name: "PWD & Recruitment",
-                  daysMin: 90,
-                  daysMax: 150,
-                  daysAvg: 120,
-                },
-                {
-                  name: "PERM Filing & Processing",
-                  daysMin: 180,
-                  daysMax: 365,
-                  daysAvg: 270,
-                },
-              ],
-            },
-            {
-              stage: "I-140 Immigrant Petition",
-              color: "#28a745",
-              steps: [
-                {
-                  name: "I-140 Processing",
-                  daysMin: 120,
-                  daysMax: 240,
-                  daysAvg: 180,
-                },
-              ],
-            },
-            {
-              stage: "I-485 Adjustment of Status",
-              color: "#fd7e14",
-              steps: [
-                {
-                  name: `Priority Date Wait (${country})`,
-                  daysMin: priorityWait.min,
-                  daysMax: priorityWait.max,
-                  daysAvg: priorityWait.avg,
-                },
-                {
-                  name: "I-485 Processing",
-                  daysMin: 180,
-                  daysMax: 540,
-                  daysAvg: 365,
-                },
-              ],
-            },
-          ];
-        } else {
-          // H1B to Green Card pathway
-          timeline = [
-          {
-            stage: "PERM Labor Certification",
-            color: "#667eea",
-            steps: [
-              {
-                name: "PWD (Prevailing Wage Determination)",
-                daysMin: 60,
-                daysMax: 90,
-                daysAvg: 75,
-              },
-              {
-                name: "Recruitment Period",
-                daysMin: 30,
-                daysMax: 60,
-                daysAvg: 45,
-              },
-              {
-                name: "PERM Filing & Processing",
-                daysMin: 180,
-                daysMax: 365,
-                daysAvg: 270,
-              },
-            ],
-          },
-          {
-            stage: "I-140 Immigrant Petition",
-            color: "#28a745",
-            steps: [
-              {
-                name: "I-140 Preparation & Filing",
-                daysMin: 15,
-                daysMax: 30,
-                daysAvg: 22,
-              },
-              {
-                name: "I-140 Processing",
-                daysMin: 120,
-                daysMax: 240,
-                daysAvg: 180,
-              },
-            ],
-          },
-          {
-            stage: "I-485 Adjustment of Status",
-            color: "#fd7e14",
-            countryNote:
-              country !== "Other"
-                ? `Priority date wait varies by country. ${country} applicants typically experience longer waits.`
-                : "",
-            steps: [
-              {
-                name: `Priority Date Wait (${country})`,
-                daysMin: priorityWait.min,
-                daysMax: priorityWait.max,
-                daysAvg: priorityWait.avg,
-              },
-              {
-                name: "I-485 Filing & Processing",
-                daysMin: 180,
-                daysMax: 540,
-                daysAvg: 365,
-              },
-              {
-                name: "Biometrics & Final Review",
-                daysMin: 30,
-                daysMax: 90,
-                daysAvg: 60,
-              },
-            ],
-          },
-        ];
-        }
-
-        let currentDate = isOptPath ? (currentStage === "f1" ? new Date(optStart) : currentStage === "opt" ? new Date(optStart) : new Date(stemOptStart)) : new Date(permStart);
-
-        // Set current date based on stage
-        if (!isOptPath) {
-          if (currentStage === "i140") {
-            currentDate = new Date(permApprovalDate);
-          } else if (currentStage === "i485") {
-            currentDate = new Date(i140ApprovalDate);
+          // Current EB2 Priority Dates from backend
+          const currentPriorityDates = {};
+          for (const [key, value] of Object.entries(
+            bulletinData.eb2PriorityDates,
+          )) {
+            currentPriorityDates[key] = new Date(value);
           }
-        }
 
-        // Determine header text based on stage
-        let headerText = "";
-        switch (currentStage) {
-          case "f1":
-            headerText = `Starting from F1 graduation: ${f1GraduationDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
-            break;
-          case "opt":
-            headerText = `Starting from OPT: ${optStart.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
-            break;
-          case "stem-opt":
-            headerText = `STEM OPT started: ${stemOptStart.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
-            break;
-          case "not-started":
-            headerText = `Starting from planned PERM: ${permStart.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
-            break;
-          case "perm":
-            headerText = `PERM started: ${permStart.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
-            break;
-          case "i140":
-            headerText = `PERM approved (Priority Date): ${permApprovalDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
-            break;
-          case "i485":
-            headerText = `I-140 approved: ${i140ApprovalDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
-            break;
-        }
+          // Movement rates from backend
+          const movementRates = bulletinData.movementRates;
 
-        let timelineHtml = '';
-        
-        // For OPT path, show a header with priority date info
-        if (isOptPath) {
-          timelineHtml = `
+          // Calculate dates based on current stage
+          let permStart,
+            permApprovalDate,
+            i140ApprovalDate,
+            optStart,
+            stemOptStart,
+            f1GraduationDate;
+          let startStageIndex = 0;
+          let isOptPath = false;
+
+          switch (currentStage) {
+            case "f1":
+              isOptPath = true;
+              f1GraduationDate = new Date(inputDate);
+              optStart = new Date(f1GraduationDate);
+              optStart.setDate(optStart.getDate() + 90); // OPT typically starts ~3 months after graduation
+              stemOptStart = new Date(optStart);
+              stemOptStart.setDate(stemOptStart.getDate() + 365); // STEM OPT after 1 year of OPT
+              startStageIndex = 0; // Show full path from OPT
+              break;
+            case "opt":
+              isOptPath = true;
+              optStart = new Date(inputDate);
+              // For OPT timeline, we'll show path to H1B then PERM
+              startStageIndex = 0;
+              break;
+            case "stem-opt":
+              isOptPath = true;
+              stemOptStart = new Date(inputDate);
+              optStart = new Date(stemOptStart);
+              optStart.setDate(optStart.getDate() - 365); // Assume 1 year OPT before STEM
+              startStageIndex = 1;
+              break;
+            case "not-started":
+            case "perm":
+              permStart = new Date(inputDate);
+              permApprovalDate = new Date(permStart);
+              permApprovalDate.setDate(permApprovalDate.getDate() + 390); // ~13 months for PERM
+              startStageIndex = 0;
+              break;
+            case "i140":
+              permApprovalDate = new Date(inputDate); // Input is PERM approval date (Priority Date)
+              permStart = new Date(permApprovalDate);
+              permStart.setDate(permStart.getDate() - 390);
+              startStageIndex = 1;
+              break;
+            case "i485":
+              i140ApprovalDate = new Date(inputDate);
+              permApprovalDate = new Date(i140ApprovalDate);
+              permApprovalDate.setDate(permApprovalDate.getDate() - 202); // subtract avg I-140 time
+              permStart = new Date(permApprovalDate);
+              permStart.setDate(permStart.getDate() - 390);
+              startStageIndex = 2;
+              break;
+          }
+
+          // Calculate priority date wait based on current bulletin and your future priority date
+          let priorityDateWaitDays = 0;
+          let currentPD, daysBacklog, movementRate;
+
+          if (isOptPath) {
+            // For OPT path, calculate when PERM would be approved (this becomes the Priority Date)
+            // Estimate: OPT (365 days) + STEM OPT (730 days) + H1B start + time to start PERM (~1 year after H1B) + PERM processing (390 days)
+            const estimatedPermApprovalDate = new Date(optStart);
+            estimatedPermApprovalDate.setDate(
+              estimatedPermApprovalDate.getDate() + 365 + 730 + 195 + 365 + 390,
+            ); // Full timeline to PERM approval
+
+            currentPD =
+              currentPriorityDates[country] || currentPriorityDates["Other"];
+            movementRate = movementRates[country] || movementRates["Other"];
+            daysBacklog =
+              (estimatedPermApprovalDate - currentPD) / (1000 * 60 * 60 * 24);
+            const yearsToWait = daysBacklog / movementRate;
+            priorityDateWaitDays = Math.max(0, Math.round(yearsToWait * 365));
+
+            // Store the estimated PERM approval for display purposes
+            permApprovalDate = estimatedPermApprovalDate;
+          } else {
+            currentPD =
+              currentPriorityDates[country] || currentPriorityDates["Other"];
+            const yearsBacklogged =
+              (permApprovalDate - currentPD) / (1000 * 60 * 60 * 24 * 365);
+
+            movementRate = movementRates[country] || movementRates["Other"];
+            daysBacklog =
+              (permApprovalDate - currentPD) / (1000 * 60 * 60 * 24);
+            const yearsToWait = daysBacklog / movementRate;
+            priorityDateWaitDays = Math.max(0, Math.round(yearsToWait * 365));
+          }
+
+          // Set min/max based on calculation
+          const priorityWaitCalc = {
+            min: Math.round(priorityDateWaitDays * 0.7),
+            max: Math.round(priorityDateWaitDays * 1.3),
+            avg: priorityDateWaitDays,
+          };
+
+          // Adjust priority date wait based on country
+          // India and China have the longest waits due to per-country caps
+          const priorityDateWaitByCountry = {
+            India: priorityWaitCalc,
+            China: priorityWaitCalc,
+            Mexico: priorityWaitCalc,
+            Philippines: priorityWaitCalc,
+            Other: priorityWaitCalc,
+          };
+
+          const priorityWait =
+            priorityDateWaitByCountry[country] ||
+            priorityDateWaitByCountry["Other"];
+
+          // Define detailed timeline with substages
+          let timeline;
+
+          if (isOptPath) {
+            // OPT/STEM OPT to Green Card pathway
+            timeline = [
+              {
+                stage: "OPT (Optional Practical Training)",
+                color: "#4CAF50",
+                steps: [
+                  {
+                    name: "OPT Work Authorization",
+                    daysMin: 365,
+                    daysMax: 365,
+                    daysAvg: 365,
+                  },
+                ],
+              },
+              {
+                stage: "STEM OPT Extension",
+                color: "#2196F3",
+                steps: [
+                  {
+                    name: "STEM OPT Work Authorization",
+                    daysMin: 730,
+                    daysMax: 730,
+                    daysAvg: 730,
+                  },
+                ],
+              },
+              {
+                stage: "H1B Work Visa",
+                color: "#FF9800",
+                steps: [
+                  {
+                    name: "H1B Lottery & Processing",
+                    daysMin: 180,
+                    daysMax: 210,
+                    daysAvg: 195,
+                  },
+                ],
+              },
+              {
+                stage: "PERM Labor Certification",
+                color: "#667eea",
+                steps: [
+                  {
+                    name: "PWD & Recruitment",
+                    daysMin: 90,
+                    daysMax: 150,
+                    daysAvg: 120,
+                  },
+                  {
+                    name: "PERM Filing & Processing",
+                    daysMin: 180,
+                    daysMax: 365,
+                    daysAvg: 270,
+                  },
+                ],
+              },
+              {
+                stage: "I-140 Immigrant Petition",
+                color: "#28a745",
+                steps: [
+                  {
+                    name: "I-140 Processing",
+                    daysMin: 120,
+                    daysMax: 240,
+                    daysAvg: 180,
+                  },
+                ],
+              },
+              {
+                stage: "I-485 Adjustment of Status",
+                color: "#fd7e14",
+                steps: [
+                  {
+                    name: `Priority Date Wait (${country})`,
+                    daysMin: priorityWait.min,
+                    daysMax: priorityWait.max,
+                    daysAvg: priorityWait.avg,
+                  },
+                  {
+                    name: "I-485 Processing",
+                    daysMin: 180,
+                    daysMax: 540,
+                    daysAvg: 365,
+                  },
+                ],
+              },
+            ];
+          } else {
+            // H1B to Green Card pathway
+            timeline = [
+              {
+                stage: "PERM Labor Certification",
+                color: "#667eea",
+                steps: [
+                  {
+                    name: "PWD (Prevailing Wage Determination)",
+                    daysMin: 60,
+                    daysMax: 90,
+                    daysAvg: 75,
+                  },
+                  {
+                    name: "Recruitment Period",
+                    daysMin: 30,
+                    daysMax: 60,
+                    daysAvg: 45,
+                  },
+                  {
+                    name: "PERM Filing & Processing",
+                    daysMin: 180,
+                    daysMax: 365,
+                    daysAvg: 270,
+                  },
+                ],
+              },
+              {
+                stage: "I-140 Immigrant Petition",
+                color: "#28a745",
+                steps: [
+                  {
+                    name: "I-140 Preparation & Filing",
+                    daysMin: 15,
+                    daysMax: 30,
+                    daysAvg: 22,
+                  },
+                  {
+                    name: "I-140 Processing",
+                    daysMin: 120,
+                    daysMax: 240,
+                    daysAvg: 180,
+                  },
+                ],
+              },
+              {
+                stage: "I-485 Adjustment of Status",
+                color: "#fd7e14",
+                countryNote:
+                  country !== "Other"
+                    ? `Priority date wait varies by country. ${country} applicants typically experience longer waits.`
+                    : "",
+                steps: [
+                  {
+                    name: `Priority Date Wait (${country})`,
+                    daysMin: priorityWait.min,
+                    daysMax: priorityWait.max,
+                    daysAvg: priorityWait.avg,
+                  },
+                  {
+                    name: "I-485 Filing & Processing",
+                    daysMin: 180,
+                    daysMax: 540,
+                    daysAvg: 365,
+                  },
+                  {
+                    name: "Biometrics & Final Review",
+                    daysMin: 30,
+                    daysMax: 90,
+                    daysAvg: 60,
+                  },
+                ],
+              },
+            ];
+          }
+
+          let currentDate = isOptPath
+            ? currentStage === "f1"
+              ? new Date(optStart)
+              : currentStage === "opt"
+                ? new Date(optStart)
+                : new Date(stemOptStart)
+            : new Date(permStart);
+
+          // Set current date based on stage
+          if (!isOptPath) {
+            if (currentStage === "i140") {
+              currentDate = new Date(permApprovalDate);
+            } else if (currentStage === "i485") {
+              currentDate = new Date(i140ApprovalDate);
+            }
+          }
+
+          // Determine header text based on stage
+          let headerText = "";
+          switch (currentStage) {
+            case "f1":
+              headerText = `Starting from F1 graduation: ${f1GraduationDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
+              break;
+            case "opt":
+              headerText = `Starting from OPT: ${optStart.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
+              break;
+            case "stem-opt":
+              headerText = `STEM OPT started: ${stemOptStart.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
+              break;
+            case "not-started":
+              headerText = `Starting from planned PERM: ${permStart.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
+              break;
+            case "perm":
+              headerText = `PERM started: ${permStart.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
+              break;
+            case "i140":
+              headerText = `PERM approved (Priority Date): ${permApprovalDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
+              break;
+            case "i485":
+              headerText = `I-140 approved: ${i140ApprovalDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
+              break;
+          }
+
+          let timelineHtml = "";
+
+          // For OPT path, show a header with priority date info
+          if (isOptPath) {
+            timelineHtml = `
                 <div style="background: linear-gradient(135deg, #4CAF50 0%, #2196F3 100%); padding: 25px; border-radius: 12px; color: white; margin-bottom: 20px;">
                     <div style="font-size: 1.2em; font-weight: bold; margin-bottom: 10px;">🎓 Your Personalized Immigration Timeline</div>
                     <div style="font-size: 0.95em; opacity: 0.9;">${headerText}</div>
@@ -1867,8 +1943,8 @@
                     }
                 </div>
           `;
-        } else {
-          timelineHtml = `
+          } else {
+            timelineHtml = `
                 <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; border-radius: 12px; color: white; margin-bottom: 20px;">
                     <div style="font-size: 1.2em; font-weight: bold; margin-bottom: 10px;">📅 Your Personalized Green Card Timeline</div>
                     <div style="font-size: 0.95em; opacity: 0.9;">${headerText}</div>
@@ -1928,33 +2004,33 @@
                     }
                 </div>
           `;
-        }
-        
-        timelineHtml += `<div style="position: relative;">
+          }
+
+          timelineHtml += `<div style="position: relative;">
             `;
 
-        timeline.forEach((stage, stageIndex) => {
-          // Skip completed stages
-          if (stageIndex < startStageIndex) {
-            return;
-          }
+          timeline.forEach((stage, stageIndex) => {
+            // Skip completed stages
+            if (stageIndex < startStageIndex) {
+              return;
+            }
 
-          const isCompleted = stageIndex < startStageIndex;
-          const isCurrent = stageIndex === startStageIndex;
-          const stageStartDate = new Date(currentDate);
-          let stageTotalDays = 0;
+            const isCompleted = stageIndex < startStageIndex;
+            const isCurrent = stageIndex === startStageIndex;
+            const stageStartDate = new Date(currentDate);
+            let stageTotalDays = 0;
 
-          // Add status indicator
-          let statusBadge = "";
-          if (isCompleted) {
-            statusBadge =
-              '<span style="background: #28a745; color: white; padding: 4px 12px; border-radius: 12px; font-size: 0.85em; margin-left: 10px;">✓ Completed</span>';
-          } else if (isCurrent) {
-            statusBadge =
-              '<span style="background: #667eea; color: white; padding: 4px 12px; border-radius: 12px; font-size: 0.85em; margin-left: 10px;">🔄 Current Stage</span>';
-          }
+            // Add status indicator
+            let statusBadge = "";
+            if (isCompleted) {
+              statusBadge =
+                '<span style="background: #28a745; color: white; padding: 4px 12px; border-radius: 12px; font-size: 0.85em; margin-left: 10px;">✓ Completed</span>';
+            } else if (isCurrent) {
+              statusBadge =
+                '<span style="background: #667eea; color: white; padding: 4px 12px; border-radius: 12px; font-size: 0.85em; margin-left: 10px;">🔄 Current Stage</span>';
+            }
 
-          timelineHtml += `
+            timelineHtml += `
                     <div style="margin-bottom: 30px; padding: 20px; background: ${isCurrent ? "#e7f1ff" : "#f8f9fa"}; border-radius: 12px; border-left: 5px solid ${stage.color};">
                         <div style="font-size: 1.2em; font-weight: bold; color: #333; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
                             <span style="background: ${stage.color}; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8em;">
@@ -1975,15 +2051,15 @@
                         <div style="margin-left: 42px;">
                 `;
 
-          stage.steps.forEach((step, stepIndex) => {
-            const stepStartDate = new Date(currentDate);
-            currentDate.setDate(currentDate.getDate() + step.daysAvg);
-            const stepEndDate = new Date(currentDate);
-            stageTotalDays += step.daysAvg;
+            stage.steps.forEach((step, stepIndex) => {
+              const stepStartDate = new Date(currentDate);
+              currentDate.setDate(currentDate.getDate() + step.daysAvg);
+              const stepEndDate = new Date(currentDate);
+              stageTotalDays += step.daysAvg;
 
-            const isLast = stepIndex === stage.steps.length - 1;
+              const isLast = stepIndex === stage.steps.length - 1;
 
-            timelineHtml += `
+              timelineHtml += `
                         <div style="position: relative; padding-bottom: ${isLast ? "0" : "20px"};">
                             ${!isLast ? '<div style="position: absolute; left: 11px; top: 30px; bottom: 0; width: 2px; background: #dee2e6;"></div>' : ""}
                             <div style="display: flex; gap: 15px; align-items: start;">
@@ -2005,12 +2081,12 @@
                             </div>
                         </div>
                     `;
-          });
+            });
 
-          const stageEndDate = new Date(currentDate);
-          const stageMonths = Math.round(stageTotalDays / 30);
+            const stageEndDate = new Date(currentDate);
+            const stageMonths = Math.round(stageTotalDays / 30);
 
-          timelineHtml += `
+            timelineHtml += `
                         </div>
                         <div style="margin-top: 15px; padding: 12px; background: white; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
                             <div style="font-weight: 600; color: #333;">Stage Completion:</div>
@@ -2021,20 +2097,26 @@
                         </div>
                     </div>
                 `;
-        });
+          });
 
-        timelineHtml += "</div>";
+          timelineHtml += "</div>";
 
-        // Calculate total timeline - use appropriate start date
-        const startDate = isOptPath ? (f1GraduationDate || optStart) : permStart;
-        const greenCardDate = new Date(currentDate);
-        const totalDays = startDate ? Math.round(
-          (greenCardDate - startDate) / (1000 * 60 * 60 * 24),
-        ) : 0;
-        const totalMonths = !isNaN(totalDays) ? Math.round(totalDays / 30) : 0;
-        const totalYears = !isNaN(totalDays) ? (totalDays / 365).toFixed(1) : "0.0";
+          // Calculate total timeline - use appropriate start date
+          const startDate = isOptPath
+            ? f1GraduationDate || optStart
+            : permStart;
+          const greenCardDate = new Date(currentDate);
+          const totalDays = startDate
+            ? Math.round((greenCardDate - startDate) / (1000 * 60 * 60 * 24))
+            : 0;
+          const totalMonths = !isNaN(totalDays)
+            ? Math.round(totalDays / 30)
+            : 0;
+          const totalYears = !isNaN(totalDays)
+            ? (totalDays / 365).toFixed(1)
+            : "0.0";
 
-        timelineHtml += `
+          timelineHtml += `
                 <div style="margin-top: 25px; padding: 30px; background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; border-radius: 12px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
                     <div style="font-size: 1.1em; opacity: 0.95; margin-bottom: 15px;">🎉 Estimated Green Card Approval Date</div>
                     <div style="font-size: 3em; font-weight: bold; margin-bottom: 10px;">
@@ -2060,11 +2142,11 @@
                 </div>
             `;
 
-        timelineDiv.innerHTML = timelineHtml;
-        timelineDiv.style.display = "block";
+          timelineDiv.innerHTML = timelineHtml;
+          timelineDiv.style.display = "block";
 
-        // Scroll to the timeline
-        timelineDiv.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          // Scroll to the timeline
+          timelineDiv.scrollIntoView({ behavior: "smooth", block: "nearest" });
         } catch (error) {
           console.error("Error rendering timeline:", error);
           timelineDiv.innerHTML = `
@@ -2083,16 +2165,16 @@
         if (!expirationDate) {
           return; // Exit if no expiration date
         }
-        
+
         const today = new Date();
         const expDate = new Date(expirationDate);
-        
+
         // Validate the date
         if (isNaN(expDate.getTime())) {
           console.error("Invalid expiration date:", expirationDate);
           return; // Exit if invalid date
         }
-        
+
         const diffTime = expDate - today;
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
@@ -2106,9 +2188,13 @@
           daysRemainingCard.style.display = "block";
 
           // Calculate total years and months with validation
-          const totalYears = !isNaN(diffDays) ? (diffDays / 365).toFixed(2) : "0.00";
+          const totalYears = !isNaN(diffDays)
+            ? (diffDays / 365).toFixed(2)
+            : "0.00";
           const totalMonths = !isNaN(diffDays) ? Math.floor(diffDays / 30) : 0;
-          const displayDays = !isNaN(diffDays) ? diffDays.toLocaleString() : "0";
+          const displayDays = !isNaN(diffDays)
+            ? diffDays.toLocaleString()
+            : "0";
 
           daysRemainingDiv.innerHTML = `
                     <div style="font-size: 0.4em; opacity: 0.9; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px;">Time Remaining on ${visaType}</div>
@@ -2133,10 +2219,9 @@
 
           // Calculate percentage of time elapsed (approximate 3-year H1B)
           const totalDays = 3 * 365; // Approximate total H1B duration
-          const percentage = !isNaN(diffDays) ? (
-            ((totalDays - diffDays) / totalDays) *
-            100
-          ).toFixed(1) : "0.0";
+          const percentage = !isNaN(diffDays)
+            ? (((totalDays - diffDays) / totalDays) * 100).toFixed(1)
+            : "0.0";
           percentageDiv.textContent = `${percentage}% of H1B period used`;
 
           // Change color based on urgency
@@ -2395,36 +2480,61 @@
       // Format markdown to HTML
       function formatMarkdown(text) {
         let formatted = text;
-        
+
         // Step 1: Convert headers first (###)
-        formatted = formatted.replace(/###\s*(.+)/g, '<h3 style="color: #667eea; margin-top: 24px; margin-bottom: 12px; font-size: 1.15em; font-weight: 600;">$1</h3>');
-        
+        formatted = formatted.replace(
+          /###\s*(.+)/g,
+          '<h3 style="color: #667eea; margin-top: 24px; margin-bottom: 12px; font-size: 1.15em; font-weight: 600;">$1</h3>',
+        );
+
         // Step 2: Convert numbered section headers with bold (1. **Title:** or 1. **Title**)
-        formatted = formatted.replace(/(\d+)\.\s*\*\*([^*]+)\*\*:?/g, '<div style="margin-top: 20px; margin-bottom: 12px; font-size: 1.05em; font-weight: 600; color: #333;">$1. $2</div>');
-        
+        formatted = formatted.replace(
+          /(\d+)\.\s*\*\*([^*]+)\*\*:?/g,
+          '<div style="margin-top: 20px; margin-bottom: 12px; font-size: 1.05em; font-weight: 600; color: #333;">$1. $2</div>',
+        );
+
         // Step 3: Convert all remaining bold text (**text**)
-        formatted = formatted.replace(/\*\*([^*]+)\*\*/g, '<strong style="color: #667eea;">$1</strong>');
-        
+        formatted = formatted.replace(
+          /\*\*([^*]+)\*\*/g,
+          '<strong style="color: #667eea;">$1</strong>',
+        );
+
         // Step 4: Convert nested bullets (4+ spaces before asterisk)
-        formatted = formatted.replace(/\n\s{4,}\*\s*([^\n]+)/g, '\n<li style="margin-bottom: 8px; margin-left: 24px; line-height: 1.6; list-style-type: circle;">$1</li>');
-        
+        formatted = formatted.replace(
+          /\n\s{4,}\*\s*([^\n]+)/g,
+          '\n<li style="margin-bottom: 8px; margin-left: 24px; line-height: 1.6; list-style-type: circle;">$1</li>',
+        );
+
         // Step 5: Convert regular bullets
-        formatted = formatted.replace(/\n\*\s*([^\n]+)/g, '\n<li style="margin-bottom: 6px; line-height: 1.6;">$1</li>');
-        
+        formatted = formatted.replace(
+          /\n\*\s*([^\n]+)/g,
+          '\n<li style="margin-bottom: 6px; line-height: 1.6;">$1</li>',
+        );
+
         // Step 6: Wrap consecutive <li> in <ul>
-        formatted = formatted.replace(/(<li[^>]*>.*?<\/li>\s*)+/g, function(match) {
-          return '<ul style="margin: 8px 0 16px 0; padding-left: 20px; list-style-position: outside;">' + match + '</ul>';
-        });
-        
+        formatted = formatted.replace(
+          /(<li[^>]*>.*?<\/li>\s*)+/g,
+          function (match) {
+            return (
+              '<ul style="margin: 8px 0 16px 0; padding-left: 20px; list-style-position: outside;">' +
+              match +
+              "</ul>"
+            );
+          },
+        );
+
         // Step 7: Paragraph breaks
-        formatted = formatted.replace(/\n\n+/g, '<div style="margin: 12px 0;"></div>');
-        
+        formatted = formatted.replace(
+          /\n\n+/g,
+          '<div style="margin: 12px 0;"></div>',
+        );
+
         // Step 8: Clean up remaining newlines
-        formatted = formatted.replace(/\n/g, ' ');
-        
+        formatted = formatted.replace(/\n/g, " ");
+
         // Step 9: Final asterisk cleanup - remove any remaining asterisks
-        formatted = formatted.replace(/\*/g, '');
-        
+        formatted = formatted.replace(/\*/g, "");
+
         return formatted;
       }
 

@@ -1,11 +1,11 @@
 {
-  "effectiveDate": "2026-02-01",
+  "effectiveDate": "2026-10-01",
   "eb2PriorityDates": {
-    "India": "2013-12-01",
-    "China": "2022-01-01",
-    "Mexico": "2024-10-15",
-    "Philippines": "2024-10-15",
-    "Other": "2024-10-15"
+    "India": "2013-11-01",
+    "China": "2021-10-01",
+    "Mexico": "2025-01-01",
+    "Philippines": "2025-01-01",
+    "Other": "2025-01-01"
   },
   "movementRates": {
     "India": 60,
