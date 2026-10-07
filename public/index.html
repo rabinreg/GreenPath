@@ -1590,9 +1590,9 @@
               startStageIndex = 0;
               break;
             case "i140":
-              permApprovalDate = new Date(inputDate); // Input is PERM approval date (Priority Date)
+              permApprovalDate = new Date(inputDate); // Input is PERM approval date
               permStart = new Date(permApprovalDate);
-              permStart.setDate(permStart.getDate() - 390);
+              permStart.setDate(permStart.getDate() - 390); // PERM filing date = Priority Date
               startStageIndex = 1;
               break;
             case "i485":
@@ -1610,32 +1610,34 @@
           let currentPD, daysBacklog, movementRate;
 
           if (isOptPath) {
-            // For OPT path, calculate when PERM would be approved (this becomes the Priority Date)
-            // Estimate: OPT (365 days) + STEM OPT (730 days) + H1B start + time to start PERM (~1 year after H1B) + PERM processing (390 days)
-            const estimatedPermApprovalDate = new Date(optStart);
-            estimatedPermApprovalDate.setDate(
-              estimatedPermApprovalDate.getDate() + 365 + 730 + 195 + 365 + 390,
-            ); // Full timeline to PERM approval
+            // Priority Date = PERM filing date (not approval date)
+            // Estimate: OPT (365 days) + STEM OPT (730 days) + H1B start + time to start PERM (~1 year after H1B)
+            const estimatedPermFilingDate = new Date(optStart);
+            estimatedPermFilingDate.setDate(
+              estimatedPermFilingDate.getDate() + 365 + 730 + 195 + 365,
+            ); // Full timeline to PERM filing (Priority Date)
 
             currentPD =
               currentPriorityDates[country] || currentPriorityDates["Other"];
             movementRate = movementRates[country] || movementRates["Other"];
             daysBacklog =
-              (estimatedPermApprovalDate - currentPD) / (1000 * 60 * 60 * 24);
+              (estimatedPermFilingDate - currentPD) / (1000 * 60 * 60 * 24);
             const yearsToWait = daysBacklog / movementRate;
             priorityDateWaitDays = Math.max(0, Math.round(yearsToWait * 365));
 
-            // Store the estimated PERM approval for display purposes
-            permApprovalDate = estimatedPermApprovalDate;
+            // Store the estimated PERM filing (Priority Date) and approval for display purposes
+            permStart = estimatedPermFilingDate;
+            permApprovalDate = new Date(estimatedPermFilingDate);
+            permApprovalDate.setDate(permApprovalDate.getDate() + 390);
           } else {
             currentPD =
               currentPriorityDates[country] || currentPriorityDates["Other"];
             const yearsBacklogged =
-              (permApprovalDate - currentPD) / (1000 * 60 * 60 * 24 * 365);
+              (permStart - currentPD) / (1000 * 60 * 60 * 24 * 365);
 
             movementRate = movementRates[country] || movementRates["Other"];
             daysBacklog =
-              (permApprovalDate - currentPD) / (1000 * 60 * 60 * 24);
+              (permStart - currentPD) / (1000 * 60 * 60 * 24);
             const yearsToWait = daysBacklog / movementRate;
             priorityDateWaitDays = Math.max(0, Math.round(yearsToWait * 365));
           }
@@ -1864,7 +1866,7 @@
               headerText = `PERM started: ${permStart.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
               break;
             case "i140":
-              headerText = `PERM approved (Priority Date): ${permApprovalDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
+              headerText = `PERM approved: ${permApprovalDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })} (Priority Date: ${permStart.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })})`;
               break;
             case "i485":
               headerText = `I-140 approved: ${i140ApprovalDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
@@ -1880,7 +1882,7 @@
                     <div style="font-size: 1.2em; font-weight: bold; margin-bottom: 10px;">🎓 Your Personalized Immigration Timeline</div>
                     <div style="font-size: 0.95em; opacity: 0.9;">${headerText}</div>
                     <div style="font-size: 0.9em; opacity: 0.85; margin-top: 5px;">Full path: OPT → STEM OPT → H1B → Green Card</div>
-                    <div style="font-size: 0.85em; opacity: 0.8; margin-top: 8px;">Estimated Priority Date: ${permApprovalDate.toLocaleDateString("en-US", { month: "short", year: "numeric" })} (when PERM approves)</div>
+                    <div style="font-size: 0.85em; opacity: 0.8; margin-top: 8px;">Estimated Priority Date: ${permStart.toLocaleDateString("en-US", { month: "short", year: "numeric" })} (PERM filing date)</div>
                 </div>
                 
                 <!-- Current Priority Date Info for OPT Path -->
@@ -1924,7 +1926,7 @@
                         <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 8px; border-left: 4px solid ${priorityDateWaitDays > 730 ? "#dc3545" : priorityDateWaitDays > 365 ? "#fd7e14" : "#28a745"};">
                             <div style="font-weight: bold; margin-bottom: 8px; color: #333;">⏳ Your Priority Date Wait Calculation (${country}):</div>
                             <div style="font-size: 0.9em; color: #666; line-height: 1.6;">
-                                • Your Estimated Priority Date: <strong>${permApprovalDate.toLocaleDateString("en-US", { month: "short", year: "numeric" })}</strong> (when PERM approves after full timeline)<br>
+                                • Your Estimated Priority Date: <strong>${permStart.toLocaleDateString("en-US", { month: "short", year: "numeric" })}</strong> (PERM filing date, after full timeline)<br>
                                 • Current Processing: <strong>${currentPD.toLocaleDateString("en-US", { month: "short", year: "numeric" })}</strong><br>
                                 • Backlog: <strong>${Math.round((daysBacklog / 365) * 10) / 10} years</strong> (${Math.round(daysBacklog)} days)<br>
                                 • Movement Rate: <strong>${Math.round(movementRate / 30)} months/year</strong><br>
@@ -1948,7 +1950,7 @@
                 <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; border-radius: 12px; color: white; margin-bottom: 20px;">
                     <div style="font-size: 1.2em; font-weight: bold; margin-bottom: 10px;">📅 Your Personalized Green Card Timeline</div>
                     <div style="font-size: 0.95em; opacity: 0.9;">${headerText}</div>
-                    <div style="font-size: 0.9em; opacity: 0.85; margin-top: 5px;">Your Priority Date: ${permApprovalDate.toLocaleDateString("en-US", { month: "long", year: "numeric" })}</div>
+                    <div style="font-size: 0.9em; opacity: 0.85; margin-top: 5px;">Your Priority Date: ${permStart.toLocaleDateString("en-US", { month: "long", year: "numeric" })}</div>
                 </div>
                 
                 <!-- Current Priority Date Info -->
@@ -1992,7 +1994,7 @@
                         <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 8px; border-left: 4px solid ${priorityDateWaitDays > 730 ? "#dc3545" : priorityDateWaitDays > 365 ? "#fd7e14" : "#28a745"};">
                             <div style="font-weight: bold; margin-bottom: 8px; color: #333;">⏳ Your Priority Date Wait Calculation (${country}):</div>
                             <div style="font-size: 0.9em; color: #666; line-height: 1.6;">
-                                • Your Priority Date: <strong>${permApprovalDate.toLocaleDateString("en-US", { month: "short", year: "numeric" })}</strong> (when PERM approves)<br>
+                                • Your Priority Date: <strong>${permStart.toLocaleDateString("en-US", { month: "short", year: "numeric" })}</strong> (PERM filing date)<br>
                                 • Current Processing: <strong>${currentPD.toLocaleDateString("en-US", { month: "short", year: "numeric" })}</strong><br>
                                 • Backlog: <strong>${Math.round((daysBacklog / 365) * 10) / 10} years</strong> (${Math.round(daysBacklog)} days)<br>
                                 • Movement Rate: <strong>${Math.round(movementRate / 30)} months/year</strong><br>
